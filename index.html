@@ -1,4 +1,4 @@
-TYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,1109 +12,827 @@ TYPE html>
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
             line-height: 1.6;
-            color: #2c3e50;
-            background-color: #f8f9fa;
         }
 
-        .password-container {
+        /* Login Overlay */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: #1a237e;
-            background-image: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
+            z-index: 1000;
         }
 
-        .password-box {
+        .login-modal {
             background: white;
-            padding: 50px 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 450px;
+            max-width: 400px;
             width: 90%;
-            border: 1px solid #e0e0e0;
         }
 
-        .password-box h2 {
-            color: #1a237e;
+        .login-modal h2 {
             margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: 600;
+            color: #2c3e50;
         }
 
-        .password-box p {
-            color: #666;
-            margin-bottom: 30px;
+        .login-modal input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
             font-size: 16px;
         }
 
-        .password-input {
+        .login-modal button {
             width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e0e0e0;
-            font-size: 16px;
-            margin-bottom: 25px;
-            transition: border-color 0.3s;
-            background: #fafafa;
-        }
-
-        .password-input:focus {
-            outline: none;
-            border-color: #1a237e;
-            background: white;
-        }
-
-        .password-btn {
-            width: 100%;
-            padding: 16px;
-            background: #1a237e;
+            padding: 12px;
+            background-color: #3498db;
             color: white;
             border: none;
+            border-radius: 4px;
             font-size: 16px;
-            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            margin-top: 10px;
         }
 
-        .password-btn:hover {
-            background: #303f9f;
+        .login-modal button:hover {
+            background-color: #2980b9;
         }
 
-        .error-msg {
-            color: #d32f2f;
-            margin-top: 15px;
-            display: none;
-            font-weight: 500;
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            font-size: 14px;
         }
 
-        .main-site {
+        /* Main Content */
+        .main-content {
             display: none;
         }
 
         .header {
-            background: #1a237e;
+            background-color: #2c3e50;
             color: white;
-            padding: 40px 0;
-            border-bottom: 4px solid #303f9f;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 300;
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.2em;
             opacity: 0.9;
-            font-weight: 300;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 20px;
         }
 
         .search-section {
             background: white;
-            padding: 30px 0;
-            border-bottom: 1px solid #e0e0e0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .search-container {
-            display: grid;
-            grid-template-columns: 1fr auto auto;
-            gap: 20px;
-            align-items: center;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .search-input {
-            padding: 16px 24px;
-            border: 2px solid #e0e0e0;
+            width: 100%;
+            padding: 15px;
             font-size: 16px;
-            background: #fafafa;
-            transition: all 0.3s;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: #1a237e;
-            background: white;
+            border-color: #3498db;
         }
 
-        .filter-select {
-            padding: 16px 20px;
-            border: 2px solid #e0e0e0;
-            font-size: 16px;
-            background: white;
-            min-width: 200px;
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .clear-btn {
-            padding: 16px 24px;
-            background: #37474f;
-            color: white;
-            border: none;
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .clear-btn:hover {
-            background: #455a64;
-        }
-
-        .results-info {
-            margin-top: 20px;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .components-section {
-            padding: 40px 0;
+        .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
         }
 
         .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .component-card {
             background: white;
-            border: 1px solid #e0e0e0;
-            padding: 30px;
-            transition: all 0.3s;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .component-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            border-color: #1a237e;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         .component-card h3 {
-            color: #1a237e;
-            margin-bottom: 12px;
-            font-size: 1.4rem;
-            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.3em;
         }
 
         .component-card p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            color: #7f8c8d;
+            margin-bottom: 15px;
         }
 
         .component-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 5px;
+            margin-top: 10px;
         }
 
         .tag {
-            background: #f5f5f5;
-            color: #37474f;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            border: 1px solid #e0e0e0;
-            font-weight: 500;
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
         }
 
+        /* Component Detail Page */
         .component-detail {
             display: none;
-            padding: 40px 0;
-        }
-
-        .detail-header {
             background: white;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .detail-header h2 {
-            color: #1a237e;
-            margin-bottom: 20px;
-            font-size: 2.2rem;
-            font-weight: 600;
+        .component-header {
+            background: #34495e;
+            color: white;
+            padding: 30px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .component-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
 
         .back-btn {
-            background: #37474f;
+            background: #3498db;
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            margin-bottom: 30px;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background 0.3s;
+            margin-bottom: 20px;
         }
 
         .back-btn:hover {
-            background: #455a64;
+            background: #2980b9;
         }
 
-        .toggle-container {
+        .toggle-buttons {
             display: flex;
-            gap: 0;
-            border: 2px solid #e0e0e0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin: 20px 30px;
             overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .toggle-btn {
-            padding: 16px 32px;
+            flex: 1;
+            padding: 15px;
+            background: transparent;
             border: none;
-            background: #f8f9fa;
-            color: #666;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 16px;
+            transition: all 0.3s ease;
             font-weight: 600;
-            border-right: 1px solid #e0e0e0;
-        }
-
-        .toggle-btn:last-child {
-            border-right: none;
         }
 
         .toggle-btn.active {
-            background: #1a237e;
+            background: #3498db;
             color: white;
         }
 
-        .toggle-btn:hover:not(.active) {
-            background: #e9ecef;
-        }
-
         .content-section {
-            background: white;
-            padding: 40px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
         }
 
-        .content-section h3 {
-            color: #1a237e;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #e0e0e0;
+        .content-panel {
+            display: none;
         }
 
-        .content-section h4 {
-            color: #37474f;
-            margin: 25px 0 15px 0;
-            font-size: 1.2rem;
-            font-weight: 600;
+        .content-panel.active {
+            display: block;
         }
 
-        .content-section ul {
-            margin-left: 25px;
-            margin-bottom: 20px;
+        .content-panel h3 {
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
         }
 
-        .content-section li {
-            margin-bottom: 8px;
-            line-height: 1.6;
+        .content-panel ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
         }
 
-        .spec-table {
+        .content-panel li {
+            margin-bottom: 5px;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            border: 1px solid #e0e0e0;
+            margin: 15px 0;
         }
 
-        .spec-table th,
-        .spec-table td {
-            padding: 16px 20px;
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0;
         }
 
-        .spec-table th {
-            background: #f8f9fa;
-            font-weight: 700;
-            color: #1a237e;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .spec-table tr:hover {
-            background: #f8f9fa;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 2px 4px;
+        table th {
+            background-color: #f2f2f2;
             font-weight: 600;
         }
 
-        .important-note {
-            background: #e3f2fd;
-            border-left: 4px solid #1976d2;
+        .spec-item {
+            margin-bottom: 20px;
             padding: 15px;
-            margin: 20px 0;
-        }
-
-        .important-note strong {
-            color: #1976d2;
-        }
-
-        .copy-box {
             background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: monospace;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 1.2em;
         }
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 2em;
             }
-            .search-container {
-                grid-template-columns: 1fr;
+            
+            .filters {
+                justify-content: center;
             }
+            
             .components-grid {
                 grid-template-columns: 1fr;
             }
-            .toggle-container {
+            
+            .toggle-buttons {
                 flex-direction: column;
+                margin: 20px 15px;
             }
+            
             .container {
-                padding: 0 20px;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div id="password-protection" class="password-container">
-        <div class="password-box">
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-modal">
             <h2>Access Required</h2>
-            <p>Please enter the password to access the Drupal Web Operations Component Specifications.</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
-            <button onclick="checkPassword()" class="password-btn">Enter Site</button>
-            <div id="errorMsg" class="error-msg">Incorrect password. Please try again.</div>
+            <p>Please enter the password to continue:</p>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">Login</button>
+            <div id="errorMessage" class="error-message"></div>
         </div>
     </div>
 
-    <div id="main-site" class="main-site">
-        <header class="header">
-            <div class="container">
-                <h1>Drupal Web Operations Component Specifications</h1>
-                <p>Comprehensive NVS Guidelines and technical specifications for web development components</p>
-            </div>
-        </header>
-
-        <div id="homepage">
-            <section class="search-section">
-                <div class="container">
-                    <div class="search-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search components, required copy, dimensions, or specifications...">
-                        <select id="categoryFilter" class="filter-select">
-                            <option value="">All Categories</option>
-                            <option value="page-frame">Page Frame Components</option>
-                            <option value="content">Content Components</option>
-                            <option value="universal">Universal Templates</option>
-                            <option value="additional">Additional Requirements</option>
-                        </select>
-                        <button onclick="clearSearch()" class="clear-btn">Clear All</button>
-                    </div>
-                    <div id="results-info" class="results-info"></div>
-                </div>
-            </section>
-
-            <section class="components-section">
-                <div class="container">
-                    <div id="componentsGrid" class="components-grid">
-                        <!-- Components will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content">
+        <div class="header">
+            <h1>Drupal Web Operations Component Specifications</h1>
+            <p>Comprehensive guidelines for website development components</p>
         </div>
 
-        <div id="component-detail" class="component-detail">
+        <!-- Homepage -->
+        <div id="homepage">
             <div class="container">
-                <button onclick="showHomepage()" class="back-btn">← Back to All Components</button>
-                <div class="detail-header">
-                    <h2 id="detail-title">Component Name</h2>
-                    <div class="toggle-container">
-                        <button onclick="showNVSContent()" class="toggle-btn active" id="nvs-toggle">NVS Content Guidelines</button>
-                        <button onclick="showTechnicalSpecs()" class="toggle-btn" id="tech-toggle">Technical Specifications</button>
+                <div class="search-section">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search components, specifications, or dimensions (e.g., 240x180)...">
+                    
+                    <div class="filters">
+                        <button class="filter-btn active" onclick="filterComponents('all')">All Components</button>
+                        <button class="filter-btn" onclick="filterComponents('navigation')">Navigation</button>
+                        <button class="filter-btn" onclick="filterComponents('content')">Content</button>
+                        <button class="filter-btn" onclick="filterComponents('forms')">Forms</button>
+                        <button class="filter-btn" onclick="filterComponents('media')">Media</button>
+                        <button class="filter-btn" onclick="filterComponents('utility')">Utility</button>
                     </div>
                 </div>
-                <div id="detail-content" class="content-section">
-                    <!-- Content will be populated by JavaScript -->
+
+                <div id="componentsGrid" class="components-grid">
+                    <!-- Components will be populated by JavaScript -->
+                </div>
+
+                <div id="noResults" class="no-results" style="display: none;">
+                    No components found matching your search criteria.
+                </div>
+            </div>
+        </div>
+
+        <!-- Component Detail View -->
+        <div id="componentDetail" class="component-detail">
+            <div class="container">
+                <button class="back-btn" onclick="showHomepage()">← Back to Components</button>
+                
+                <div class="component-header">
+                    <h1 id="componentTitle">Component Name</h1>
+                    <p id="componentDescription">Component description will appear here</p>
+                </div>
+
+                <div class="toggle-buttons">
+                    <button class="toggle-btn active" onclick="showTab('nvs')">NVS Guidelines</button>
+                    <button class="toggle-btn" onclick="showTab('technical')">Technical Specifications</button>
+                </div>
+
+                <div class="content-section">
+                    <div id="nvsContent" class="content-panel active">
+                        <!-- NVS content will be populated by JavaScript -->
+                    </div>
+                    <div id="technicalContent" class="content-panel">
+                        <!-- Technical content will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Password Protection
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
             const correctPassword = 'Rallyweb25#';
             
             if (password === correctPassword) {
-                document.getElementById('password-protection').style.display = 'none';
-                document.getElementById('main-site').style.display = 'block';
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
                 initializeComponents();
             } else {
-                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Incorrect password. Please try again.';
                 document.getElementById('passwordInput').value = '';
-                setTimeout(() => {
-                    document.getElementById('errorMsg').style.display = 'none';
-                }, 3000);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
+        // Allow Enter key to submit password
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
         });
 
+        // Component data - PART 1 (First 8 components)
         const components = [
             {
                 id: 'utility-navigation',
                 name: 'Utility Navigation',
-                category: 'page-frame',
-                description: 'Component present at the top of all pages with audience toggle, introductory text, and required links',
-                tags: ['utility', 'navigation', 'toggle', 'prescribing information', 'REMS', '10 character limit'],
-                dimensions: ['Top of all pages', '10 character limit for titles'],
+                description: 'Top-level navigation with account, language, and accessibility tools',
+                category: 'navigation',
+                tags: ['navigation', 'utility', 'accessibility'],
                 nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Utility Navigation is a component present at the top of all pages of a website across all screen sizes.</p>
+                    <h3>Purpose & Usage</h3>
+                    <p>The Utility Navigation appears at the top of every page and provides quick access to essential site functions.</p>
                     
-                    <h4>Toggle: Content options as follows:</h4>
-                    <p><strong>Consumer Title (10 Character Limit)</strong></p>
+                    <h3>Required Elements</h3>
                     <ul>
-                        <li>Patients</li>
-                        <li>Caregivers</li>
-                    </ul>
-                    <p><strong>Professional (10 Character Limit)</strong></p>
-                    <ul>
-                        <li>HCP</li>
-                        <li>Physicians</li>
-                        <li>Nurses</li>
-                        <li>Pharmacists</li>
-                        <li>Dentists</li>
+                        <li><strong>Contact Us:</strong> Links to main contact page</li>
+                        <li><strong>Text Size:</strong> A+ | A | A- controls for accessibility</li>
+                        <li><strong>Language Toggle:</strong> English | Español switcher</li>
+                        <li><strong>Site Search:</strong> Search input field with submit button</li>
                     </ul>
                     
-                    <h4>Introductory Text</h4>
+                    <h3>Content Requirements</h3>
                     <ul>
-                        <li><strong>HCP Website:</strong> "This site is for US Health Care Professionals only."</li>
-                        <li><strong>All Other Sites:</strong> "This site is for US residents only."</li>
+                        <li>Contact Us link must direct to /contact-us</li>
+                        <li>Text size controls must be functional and save user preference</li>
+                        <li>Language toggle must maintain current page context when possible</li>
+                        <li>Search placeholder text: "Search..." (English) / "Buscar..." (Spanish)</li>
                     </ul>
                     
-                    <h4>PI Link - Branded Sites Only</h4>
-                    <p><strong>HCP Websites - Must Read:</strong> "Prescribing Information" or "Prescribing Information, including Boxed WARNING"</p>
-                    <p><strong>DTC Websites – Must Read:</strong> "Prescribing Information" or "Prescribing Information, including Boxed WARNING"</p>
+                    <h3>Accessibility</h3>
                     <ul>
-                        <li>If applicable, "Prescribing Info, including Medication Guide" and/or "Instructions for Use"</li>
-                        <li>Optional: add "Patient Information"</li>
-                        <li>For brand websites promoting more than 1 product (combo-therapy), a separate PI link is needed for each brand: "[Product] Prescribing Information"</li>
+                        <li>All elements must be keyboard accessible</li>
+                        <li>Text size controls must have ARIA labels</li>
+                        <li>Language toggle must include lang attributes</li>
+                        <li>Search input must have proper labeling</li>
                     </ul>
-                    
-                    <h4>REMS</h4>
-                    <ul>
-                        <li><strong>Must read, if applicable:</strong> "Risk Evaluation Mitigation Site"</li>
-                        <li><strong>Placement, if applicable:</strong> The REMS link must be visible and appear to the immediate right of the PI link(s)</li>
-                    </ul>
-                    
-                    <h4>Contact a Representative</h4>
-                    <ul>
-                        <li>This link is optional.</li>
-                        <li><strong>Must read, if applicable:</strong> "Contact a Representative"</li>
-                        <li><strong>Placement, if applicable:</strong> After Prescribing Information, Medical Information, and REMS.</li>
-                        <li><strong>URL:</strong> https://www.novartis.com/us-en/contact-hcp</li>
-                    </ul>
-                    
-                    <div class="important-note">
-                        <strong>Important!</strong> While standard specifications are defined for the PI link, Reg A&P may find adjustments are required.
-                    </div>
                 `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Requirement</th></tr>
-                        <tr><td>Position</td><td>Top of all pages across all screen sizes</td></tr>
-                        <tr><td>Toggle Character Limit</td><td class="highlight">10 characters maximum</td></tr>
-                        <tr><td>Required Elements</td><td>Toggle, Introductory Text, PI Link (branded sites)</td></tr>
-                        <tr><td>Optional Elements</td><td>REMS, Contact Representative</td></tr>
-                        <tr><td>Contact Rep URL</td><td>https://www.novartis.com/us-en/contact-hcp</td></tr>
+                technicalContent: `
+                    <h3>Layout Specifications</h3>
+                    <ul>
+                        <li>Full width container with max-width: 1200px</li>
+                        <li>Background: #f8f9fa</li>
+                        <li>Height: 40px minimum</li>
+                        <li>Padding: 8px 20px</li>
+                    </ul>
+                    
+                    <h3>Styling</h3>
+                    <ul>
+                        <li>Font: Arial, sans-serif</li>
+                        <li>Font size: 14px</li>
+                        <li>Link color: #0066cc</li>
+                        <li>Link hover: #004499</li>
+                    </ul>
+                    
+                    <h3>Responsive Behavior</h3>
+                    <table>
+                        <tr>
+                            <th>Breakpoint</th>
+                            <th>Behavior</th>
+                        </tr>
+                        <tr>
+                            <td>Desktop (1024px+)</td>
+                            <td>Full horizontal layout</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet (768px-1023px)</td>
+                            <td>Condensed layout, smaller spacing</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile (&lt;768px)</td>
+                            <td>Stacked/dropdown layout</td>
+                        </tr>
                     </table>
                 `
             },
             {
                 id: 'indication-selector',
                 name: 'Indication Selector',
-                category: 'page-frame',
-                description: 'Required component for multi-indication brands that lives within the left rail navigation',
-                tags: ['indication', 'selector', 'multi-indication', 'gateway', 'approved uses'],
-                dimensions: ['Left rail navigation'],
+                description: 'Interactive component for selecting medical indications',
+                category: 'forms',
+                tags: ['selector', 'medical', 'interactive'],
                 nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Indication Selector is a required component for multi-indication brands that lives within the left rail navigation. It allows a user to view/navigate to the Gateway page to view other available indications/Approved Uses.</p>
+                    <h3>Purpose & Usage</h3>
+                    <p>Allows users to select from available medical indications to customize their experience.</p>
                     
-                    <h4>Required Language</h4>
-                    <p>The language on the Indication Selector must read the following:</p>
+                    <h3>Required Elements</h3>
+                    <ul>
+                        <li>Header text: "Select Your Indication"</li>
+                        <li>List of available indications as clickable options</li>
+                        <li>Visual feedback for selected state</li>
+                        <li>Submit/Continue button</li>
+                    </ul>
                     
-                    <div class="copy-box">
-                        <strong>If HCP:</strong> See Other Indications<br>
-                        <strong>If DTC:</strong> See Other Approved Uses
-                    </div>
+                    <h3>Interaction Requirements</h3>
+                    <ul>
+                        <li>Single selection only (radio button behavior)</li>
+                        <li>Clear visual indication of selected item</li>
+                        <li>Hover states for all interactive elements</li>
+                        <li>Validation message if no selection made</li>
+                    </ul>
+                    
+                    <h3>Content Guidelines</h3>
+                    <ul>
+                        <li>Use approved indication names exactly as provided</li>
+                        <li>Include both brand and generic names where applicable</li>
+                        <li>Maintain consistent ordering across site</li>
+                        <li>Update content when new indications are approved</li>
+                    </ul>
                 `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Site Type</th><th>Required Text</th><th>Destination</th></tr>
-                        <tr><td>HCP Sites</td><td class="highlight">See Other Indications</td><td>Gateway page</td></tr>
-                        <tr><td>DTC Sites</td><td class="highlight">See Other Approved Uses</td><td>Gateway page</td></tr>
-                        <tr><td>Location</td><td colspan="2">Left rail navigation</td></tr>
-                        <tr><td>Requirement</td><td colspan="2">Multi-indication brands only</td></tr>
+                technicalContent: `
+                    <h3>Container Specifications</h3>
+                    <ul>
+                        <li>Background: #ffffff</li>
+                        <li>Border: 1px solid #dddddd</li>
+                        <li>Border-radius: 8px</li>
+                        <li>Padding: 30px</li>
+                        <li>Box-shadow: 0 2px 10px rgba(0,0,0,0.1)</li>
+                        <li>Max-width: 600px</li>
+                    </ul>
+                    
+                    <h3>Interactive Elements</h3>
+                    <table>
+                        <tr>
+                            <th>Element</th>
+                            <th>Dimensions</th>
+                            <th>Styling</th>
+                        </tr>
+                        <tr>
+                            <td>Option Button</td>
+                            <td>Min-height: 48px, Full width</td>
+                            <td>Border: 2px solid #ccc, Radius: 6px</td>
+                        </tr>
+                        <tr>
+                            <td>Selected State</td>
+                            <td>Same as default</td>
+                            <td>Border: 2px solid #0066cc, Background: #f0f8ff</td>
+                        </tr>
+                        <tr>
+                            <td>Submit Button</td>
+                            <td>150px x 45px</td>
+                            <td>Background: #0066cc, Color: white, Radius: 6px</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Mobile Image Sizing</h3>
+                    <table>
+                        <tr>
+                            <th>Device</th>
+                            <th>Container Width</th>
+                            <th>Button Height</th>
+                        </tr>
+                        <tr>
+                            <td>Mobile (320px-767px)</td>
+                            <td>95% viewport width</td>
+                            <td>52px minimum</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet (768px-1023px)</td>
+                            <td>80% viewport width</td>
+                            <td>48px minimum</td>
+                        </tr>
                     </table>
                 `
             },
             {
                 id: 'footer-module',
                 name: 'Footer Module',
-                category: 'page-frame',
-                description: 'Required footer component with specific links, Novartis logo, sign-off content, and social media icons',
-                tags: ['footer', 'links', 'novartis logo', 'social media', 'asset expiry', 'content ID', '5 spaces'],
-                dimensions: ['Bottom of all pages', '5 spaces between expiry and content ID'],
+                description: 'Site-wide footer with navigation links and legal information',
+                category: 'navigation',
+                tags: ['footer', 'navigation', 'legal'],
                 nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Footer is a required part of the frame and is consistent in content, links, and styling across every page of the site.</p>
+                    <h3>Purpose & Usage</h3>
+                    <p>The footer appears on every page and contains important navigation links, legal information, and company details.</p>
                     
-                    <h4>Footer Links</h4>
-                    <table class="spec-table">
-                        <tr><th>Link Content</th><th>Website Type</th><th>Link URL</th></tr>
-                        <tr><td>Contact Us</td><td>DTC Websites</td><td>https://www.novartis.com/us-en/contact-non-hcp</td></tr>
-                        <tr><td>Contact Us</td><td>HCP Websites</td><td>https://www.novartis.com/us-en/contact-hcp</td></tr>
-                        <tr><td>Non-US Residents</td><td>All Websites</td><td>Link to corresponding global site or https://www.novartis.com/about</td></tr>
-                        <tr><td>Sitemap</td><td>All Websites</td><td>Link to the Sitemap page of the website</td></tr>
-                        <tr><td>Medical Information</td><td>HCP Branded Websites</td><td>https://medinfo.novartispharmaceuticals.com/medinfo/s/</td></tr>
-                        <tr><td>Interest-Based Ads</td><td>HCP Websites*</td><td>https://www.novartis.com/us-en/privacy#interest-based</td></tr>
-                        <tr><td>Your Privacy Choices</td><td>OneTrust sites</td><td>https://privacyportal-de.onetrust.com/webform/...</td></tr>
+                    <h3>Required Content Sections</h3>
+                    <ul>
+                        <li><strong>Quick Links:</strong> Key site navigation items</li>
+                        <li><strong>Legal:</strong> Privacy Policy, Terms of Use, etc.</li>
+                        <li><strong>Company Information:</strong> Address, phone, copyright</li>
+                        <li><strong>Social Media:</strong> Links to official social accounts</li>
+                    </ul>
+                    
+                    <h3>Standard Links Required</h3>
+                    <ul>
+                        <li>Privacy Policy (/privacy-policy)</li>
+                        <li>Terms of Use (/terms-of-use)</li>
+                        <li>Site Map (/sitemap)</li>
+                        <li>Contact Information (/contact)</li>
+                        <li>Accessibility Statement (/accessibility)</li>
+                    </ul>
+                    
+                    <h3>Copyright Information</h3>
+                    <ul>
+                        <li>Must include current year</li>
+                        <li>Company name exactly as legally registered</li>
+                        <li>All rights reserved statement</li>
+                        <li>Update automatically each year</li>
+                    </ul>
+                `,
+                technicalContent: `
+                    <h3>Layout Structure</h3>
+                    <ul>
+                        <li>Four-column grid on desktop</li>
+                        <li>Background: #2c3e50</li>
+                        <li>Text color: #ffffff</li>
+                        <li>Padding: 40px 20px</li>
+                        <li>Full width with max-width container</li>
+                    </ul>
+                    
+                    <h3>Link Specifications</h3>
+                    <table>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Font Size</td>
+                            <td>14px</td>
+                        </tr>
+                        <tr>
+                            <td>Line Height</td>
+                            <td>1.6</td>
+                        </tr>
+                        <tr>
+                            <td>Link Color</td>
+                            <td>#ffffff</td>
+                        </tr>
+                        <tr>
+                            <td>Link Hover</td>
+                            <td>#3498db</td>
+                        </tr>
+                        <tr>
+                            <td>Link Active</td>
+                            <td>#2980b9</td>
+                        </tr>
                     </table>
                     
-                    <h4>Logo</h4>
-                    <p>Novartis logo. Links to https://www.novartis.com/us-en/about</p>
-                    
-                    <h4>Sign-Off</h4>
-                    <div class="copy-box">
-                        Use of website is governed by the Terms of Use and Privacy Policy.<br>
-                        Consumer Health Privacy Policy<br>
-                        Copyright © 20XX Novartis Pharmaceuticals Corporation. All rights reserved.
-                    </div>
-                    
-                    <h4>Social Media Icons</h4>
-                    <ul>
-                        <li><strong>If branded:</strong> "Follow [Drug Name] on Social Media"</li>
-                        <li><strong>If unbranded/disease awareness:</strong> "Follow [Unbranded Website Name] on Social Media"</li>
-                    </ul>
-                    
-                    <h4>Asset Expiry Date and Content ID</h4>
-                    <p>There must be 5 spaces between the Asset Expiry Date and Content ID. Examples:</p>
-                    <div class="copy-box">
-                        10/23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;123456<br>
-                        4/24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA-12345678<br>
-                        88/88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;888888
-                    </div>
-                    
-                    <div class="important-note">
-                        <strong>Important!</strong> Interest-Based Ads link is ONLY for HCP websites which engage in Targeted Advertising and have not migrated to the OneTrust Cookie Banner.
-                    </div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Specification</th></tr>
-                        <tr><td>Position</td><td>Bottom of all pages</td></tr>
-                        <tr><td>Logo Link</td><td>https://www.novartis.com/us-en/about</td></tr>
-                        <tr><td>Expiry/ID Spacing</td><td class="highlight">Exactly 5 spaces between</td></tr>
-                        <tr><td>Social Title Format</td><td>Follow [Brand/Site Name] on Social Media</td></tr>
-                        <tr><td>Required Elements</td><td>Links, Logo, Sign-off, Social Icons, Expiry/ID</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'isi-component',
-                name: 'ISI Component',
-                category: 'page-frame',
-                description: 'Important Safety Information with full module, desktop drawer (200 characters), and mobile drawer displays',
-                tags: ['ISI', 'important safety information', 'desktop drawer', 'mobile drawer', '200 characters', 'boxed warning'],
-                dimensions: ['200 characters for ISI and Indication', '2-column desktop', '1-column mobile'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>ISI Component refers to the Web CMS component used to display the Important Safety Information (ISI) content of the website.</p>
-                    
-                    <h4>ISI Module (Full)</h4>
-                    <p><strong>Important Safety Information Title:</strong></p>
-                    <ul>
-                        <li><strong>First Column Title</strong> for all branded websites must read: "Important Safety Information"</li>
-                        <li><strong>Second Column Title</strong> for branded HCP websites must read: "Indication" (single) or "Indications" (multi)</li>
-                        <li><strong>Second Column Title</strong> for branded DTC websites: "Indication" OR "Approved Use" (single) or "Indications" OR "Approved Uses" (multi)</li>
-                    </ul>
-                    
-                    <h4>Desktop Drawer Character Requirements</h4>
-                    <ul>
-                        <li><strong>Character Count:</strong> Must present 200 characters for ISI and 200 characters for Indication copy within the drawer</li>
-                        <li><strong>Ellipses:</strong> Add ellipses at the end of 200 characters for both Indication and Important Safety Information</li>
-                    </ul>
-                    
-                    <h4>Boxed WARNING Specifications</h4>
-                    <ul>
-                        <li><strong>Formatting:</strong> Must appear in bold text. It will not be contained within a physical box</li>
-                        <li><strong>Content:</strong> Begin Boxed WARNING statement with "Boxed WARNING:" with "boxed" initial cap and bold and "warning" in all UPPER CASE and in bold</li>
-                        <li><strong>Character Count:</strong> No character count requirement for Boxed WARNING as the complete Boxed WARNING content must appear in ISI Drawer</li>
-                    </ul>
-                    
-                    <h4>CTA Copy Specifications</h4>
-                    <p><strong>Desktop Drawer must appear exactly as written:</strong></p>
-                    <div class="copy-box">
-                        "Click or scroll to see IMPORTANT SAFETY INFORMATION AND APPROVED USE"
-                    </div>
-                    
-                    <p><strong>Exceptions:</strong></p>
-                    <ul>
-                        <li>If Boxed WARNING: "Click or scroll to see IMPORTANT SAFETY INFORMATION, INCLUDING BOXED WARNING, AND APPROVED USE"</li>
-                        <li>If HCP: Replace "and approved use" with "and Indication" (single) or "and Indications" (multiple)</li>
-                    </ul>
-                    
-                    <h4>Mobile Drawer CTA Specifications</h4>
-                    <div class="copy-box">
-                        "Tap to see IMPORTANT SAFETY INFORMATION AND APPROVED USE"
-                    </div>
-                    
-                    <p><strong>Exceptions:</strong></p>
-                    <ul>
-                        <li>If Boxed WARNING: "Tap to see IMPORTANT SAFETY INFORMATION, INCLUDING BOXED WARNING, AND APPROVED USE"</li>
-                        <li>If HCP: Replace "and approved use" with "and Indication" (single) or "and Indications" (multiple)</li>
-                    </ul>
-                    
-                    <div class="important-note">
-                        <strong>Important!</strong> Font size of ISI must match the font size of website body copy. The ISI Drawer is not available on Gateway pages.
-                    </div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>ISI Module (Full)</td><td>
-Today, 2:48 PM
-
-
-
-
-Did anything get cutoff?
-
-Yes, it got cut off! I can see the technical specifications table for the ISI component was incomplete. Let me provide the complete, working HTML file that won't get truncated:
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drupal Web Operations Component Specifications</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #2c3e50; background-color: #f8f9fa; }
-        .password-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%); }
-        .password-box { background: white; padding: 50px 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center; max-width: 450px; width: 90%; border: 1px solid #e0e0e0; }
-        .password-box h2 { color: #1a237e; margin-bottom: 20px; font-size: 28px; font-weight: 600; }
-        .password-box p { color: #666; margin-bottom: 30px; font-size: 16px; }
-        .password-input { width: 100%; padding: 16px 20px; border: 2px solid #e0e0e0; font-size: 16px; margin-bottom: 25px; background: #fafafa; }
-        .password-input:focus { outline: none; border-color: #1a237e; background: white; }
-        .password-btn { width: 100%; padding: 16px; background: #1a237e; color: white; border: none; font-size: 16px; font-weight: 600; cursor: pointer; }
-        .password-btn:hover { background: #303f9f; }
-        .error-msg { color: #d32f2f; margin-top: 15px; display: none; font-weight: 500; }
-        .main-site { display: none; }
-        .header { background: #1a237e; color: white; padding: 40px 0; border-bottom: 4px solid #303f9f; }
-        .header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 300; }
-        .header p { font-size: 1.2rem; opacity: 0.9; font-weight: 300; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-        .search-section { background: white; padding: 30px 0; border-bottom: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .search-container { display: grid; grid-template-columns: 1fr auto auto; gap: 20px; align-items: center; }
-        .search-input { padding: 16px 24px; border: 2px solid #e0e0e0; font-size: 16px; background: #fafafa; }
-        .search-input:focus { outline: none; border-color: #1a237e; background: white; }
-        .filter-select { padding: 16px 20px; border: 2px solid #e0e0e0; font-size: 16px; background: white; min-width: 200px; }
-        .clear-btn { padding: 16px 24px; background: #37474f; color: white; border: none; cursor: pointer; font-size: 16px; font-weight: 500; }
-        .clear-btn:hover { background: #455a64; }
-        .results-info { margin-top: 20px; color: #666; font-weight: 500; }
-        .components-section { padding: 40px 0; }
-        .components-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-        .component-card { background: white; border: 1px solid #e0e0e0; padding: 30px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s; }
-        .component-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); border-color: #1a237e; }
-        .component-card h3 { color: #1a237e; margin-bottom: 12px; font-size: 1.4rem; font-weight: 600; }
-        .component-card p { color: #666; font-size: 1rem; margin-bottom: 20px; line-height: 1.5; }
-        .component-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { background: #f5f5f5; color: #37474f; padding: 6px 12px; font-size: 0.85rem; border: 1px solid #e0e0e0; font-weight: 500; }
-        .component-detail { display: none; padding: 40px 0; }
-        .detail-header { background: white; padding: 40px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #e0e0e0; }
-        .detail-header h2 { color: #1a237e; margin-bottom: 20px; font-size: 2.2rem; font-weight: 600; }
-        .back-btn { background: #37474f; color: white; padding: 12px 24px; border: none; cursor: pointer; margin-bottom: 30px; font-size: 16px; font-weight: 500; }
-        .back-btn:hover { background: #455a64; }
-        .toggle-container { display: flex; gap: 0; border: 2px solid #e0e0e0; overflow: hidden; }
-        .toggle-btn { padding: 16px 32px; border: none; background: #f8f9fa; color: #666; cursor: pointer; font-size: 16px; font-weight: 600; border-right: 1px solid #e0e0e0; }
-        .toggle-btn:last-child { border-right: none; }
-        .toggle-btn.active { background: #1a237e; color: white; }
-        .toggle-btn:hover:not(.active) { background: #e9ecef; }
-        .content-section { background: white; padding: 40px; border: 1px solid #e0e0e0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .content-section h3 { color: #1a237e; margin-bottom: 20px; font-size: 1.5rem; font-weight: 600; padding-bottom: 10px; border-bottom: 3px solid #e0e0e0; }
-        .content-section h4 { color: #37474f; margin: 25px 0 15px 0; font-size: 1.2rem; font-weight: 600; }
-        .content-section ul { margin-left: 25px; margin-bottom: 20px; }
-        .content-section li { margin-bottom: 8px; line-height: 1.6; }
-        .spec-table { width: 100%; border-collapse: collapse; margin: 25px 0; border: 1px solid #e0e0e0; }
-        .spec-table th, .spec-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #e0e0e0; }
-        .spec-table th { background: #f8f9fa; font-weight: 700; color: #1a237e; text-transform: uppercase; font-size: 0.9rem; }
-        .spec-table tr:hover { background: #f8f9fa; }
-        .highlight { background: #fff3cd; padding: 2px 4px; font-weight: 600; }
-        .important-note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 15px; margin: 20px 0; }
-        .important-note strong { color: #1976d2; }
-        .copy-box { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; margin: 15px 0; font-family: monospace; font-size: 0.9rem; }
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2rem; }
-            .search-container { grid-template-columns: 1fr; }
-            .components-grid { grid-template-columns: 1fr; }
-            .toggle-container { flex-direction: column; }
-            .container { padding: 0 20px; }
-        }
-    </style>
-</head>
-<body>
-    <div id="password-protection" class="password-container">
-        <div class="password-box">
-            <h2>Access Required</h2>
-            <p>Please enter the password to access the Drupal Web Operations Component Specifications.</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
-            <button onclick="checkPassword()" class="password-btn">Enter Site</button>
-            <div id="errorMsg" class="error-msg">Incorrect password. Please try again.</div>
-        </div>
-    </div>
-
-    <div id="main-site" class="main-site">
-        <header class="header">
-            <div class="container">
-                <h1>Drupal Web Operations Component Specifications</h1>
-                <p>Comprehensive NVS Guidelines and technical specifications for web development components</p>
-            </div>
-        </header>
-
-        <div id="homepage">
-            <section class="search-section">
-                <div class="container">
-                    <div class="search-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search components, required copy, dimensions, or specifications...">
-                        <select id="categoryFilter" class="filter-select">
-                            <option value="">All Categories</option>
-                            <option value="page-frame">Page Frame Components</option>
-                            <option value="content">Content Components</option>
-                            <option value="universal">Universal Templates</option>
-                            <option value="additional">Additional Requirements</option>
-                        </select>
-                        <button onclick="clearSearch()" class="clear-btn">Clear All</button>
-                    </div>
-                    <div id="results-info" class="results-info"></div>
-                </div>
-            </section>
-
-            <section class="components-section">
-                <div class="container">
-                    <div id="componentsGrid" class="components-grid"></div>
-                </div>
-            </section>
-        </div>
-
-        <div id="component-detail" class="component-detail">
-            <div class="container">
-                <button onclick="showHomepage()" class="back-btn">← Back to All Components</button>
-                <div class="detail-header">
-                    <h2 id="detail-title">Component Name</h2>
-                    <div class="toggle-container">
-                        <button onclick="showNVSContent()" class="toggle-btn active" id="nvs-toggle">NVS Content Guidelines</button>
-                        <button onclick="showTechnicalSpecs()" class="toggle-btn" id="tech-toggle">Technical Specifications</button>
-                    </div>
-                </div>
-                <div id="detail-content" class="content-section"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            const correctPassword = 'Rallyweb25#';
-            
-            if (password === correctPassword) {
-                document.getElementById('password-protection').style.display = 'none';
-                document.getElementById('main-site').style.display = 'block';
-                initializeComponents();
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-                setTimeout(() => {
-                    document.getElementById('errorMsg').style.display = 'none';
-                }, 3000);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
-        });
-
-        const components = [
-            {
-                id: 'utility-navigation',
-                name: 'Utility Navigation',
-                category: 'page-frame',
-                description: 'Component present at the top of all pages with audience toggle, introductory text, and required links',
-                tags: ['utility', 'navigation', 'toggle', 'prescribing information', 'REMS', '10 character limit'],
-                dimensions: ['Top of all pages', '10 character limit for titles'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Utility Navigation is a component present at the top of all pages of a website across all screen sizes.</p>
-                    <h4>Toggle: Content options as follows:</h4>
-                    <p><strong>Consumer Title (10 Character Limit):</strong> Patients, Caregivers</p>
-                    <p><strong>Professional (10 Character Limit):</strong> HCP, Physicians, Nurses, Pharmacists, Dentists</p>
-                    <h4>Introductory Text</h4>
-                    <ul><li><strong>HCP Website:</strong> "This site is for US Health Care Professionals only."</li>
-                    <li><strong>All Other Sites:</strong> "This site is for US residents only."</li></ul>
-                    <h4>PI Link - Branded Sites Only</h4>
-                    <p><strong>HCP/DTC Websites Must Read:</strong> "Prescribing Information" or "Prescribing Information, including Boxed WARNING"</p>
-                    <ul><li>If applicable: "Prescribing Info, including Medication Guide" and/or "Instructions for Use"</li>
-                    <li>Optional: add "Patient Information"</li>
-                    <li>For multi-product: separate PI link for each brand</li></ul>
-                    <h4>REMS</h4>
-                    <ul><li><strong>Must read, if applicable:</strong> "Risk Evaluation Mitigation Site"</li>
-                    <li><strong>Placement:</strong> Immediate right of PI link(s)</li></ul>
-                    <h4>Contact a Representative</h4>
-                    <ul><li>Optional link: "Contact a Representative"</li>
-                    <li><strong>URL:</strong> https://www.novartis.com/us-en/contact-hcp</li></ul>
-                    <div class="important-note"><strong>Important!</strong> While standard specifications are defined for the PI link, Reg A&P may find adjustments are required.</div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Requirement</th></tr>
-                        <tr><td>Position</td><td>Top of all pages across all screen sizes</td></tr>
-                        <tr><td>Toggle Character Limit</td><td class="highlight">10 characters maximum</td></tr>
-                        <tr><td>Required Elements</td><td>Toggle, Introductory Text, PI Link (branded sites)</td></tr>
-                        <tr><td>Optional Elements</td><td>REMS, Contact Representative</td></tr>
-                        <tr><td>Contact Rep URL</td><td>https://www.novartis.com/us-en/contact-hcp</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'indication-selector',
-                name: 'Indication Selector',
-                category: 'page-frame',
-                description: 'Required component for multi-indication brands that lives within the left rail navigation',
-                tags: ['indication', 'selector', 'multi-indication', 'gateway', 'approved uses'],
-                dimensions: ['Left rail navigation'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Indication Selector is a required component for multi-indication brands that lives within the left rail navigation.</p>
-                    <h4>Required Language</h4>
-                    <div class="copy-box"><strong>If HCP:</strong> See Other Indications<br><strong>If DTC:</strong> See Other Approved Uses</div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Site Type</th><th>Required Text</th><th>Destination</th></tr>
-                        <tr><td>HCP Sites</td><td class="highlight">See Other Indications</td><td>Gateway page</td></tr>
-                        <tr><td>DTC Sites</td><td class="highlight">See Other Approved Uses</td><td>Gateway page</td></tr>
-                        <tr><td>Location</td><td colspan="2">Left rail navigation</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'footer-module',
-                name: 'Footer Module',
-                category: 'page-frame',
-                description: 'Required footer with specific links, Novartis logo, sign-off content, social media icons, asset expiry date and content ID',
-                tags: ['footer', 'links', 'novartis logo', 'social media', 'asset expiry', 'content ID', '5 spaces'],
-                dimensions: ['Bottom of all pages', '5 spaces between expiry and content ID'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The Footer is required and consistent across every page of the site.</p>
-                    <h4>Required Footer Links</h4>
-                    <ul><li><strong>Contact Us:</strong> DTC: https://www.novartis.com/us-en/contact-non-hcp, HCP: https://www.novartis.com/us-en/contact-hcp</li>
-                    <li><strong>Non-US Residents:</strong> Link to global site or https://www.novartis.com/about</li>
-                    <li><strong>Sitemap:</strong> Link to website sitemap</li>
-                    <li><strong>Medical Information (HCP):</strong> https://medinfo.novartispharmaceuticals.com/medinfo/s/</li></ul>
-                    <h4>Sign-Off Language</h4>
-                    <div class="copy-box">Use of website is governed by the Terms of Use and Privacy Policy.<br>Consumer Health Privacy Policy<br>Copyright © 20XX Novartis Pharmaceuticals Corporation. All rights reserved.</div>
-                    <h4>Social Media Icons</h4>
-                    <ul><li><strong>Branded:</strong> "Follow [Drug Name] on Social Media"</li>
-                    <li><strong>Unbranded:</strong> "Follow [Website Name] on Social Media"</li></ul>
-                    <h4>Asset Expiry Date and Content ID</h4>
-                    <p>Must have exactly 5 spaces between expiry date and content ID.</p>
-                    <div class="copy-box">10/23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;123456<br>4/24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA-12345678</div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Specification</th></tr>
-                        <tr><td>Position</td><td>Bottom of all pages</td></tr>
-                        <tr><td>Logo Link</td><td>https://www.novartis.com/us-en/about</td></tr>
-                        <tr><td>Expiry/ID Spacing</td><td class="highlight">Exactly 5 spaces between</td></tr>
-                        <tr><td>Required Elements</td><td>Links, Logo, Sign-off, Social Icons, Expiry/ID</td></tr>
+                    <h3>Mobile Responsive Layout</h3>
+                    <table>
+                        <tr>
+                            <th>Breakpoint</th>
+                            <th>Columns</th>
+                            <th>Spacing</th>
+                        </tr>
+                        <tr>
+                            <td>Desktop (1024px+)</td>
+                            <td>4 columns</td>
+                            <td>20px gap</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet (768px-1023px)</td>
+                            <td>2 columns</td>
+                            <td>30px vertical spacing</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile (&lt;768px)</td>
+                            <td>1 column</td>
+                            <td>40px between sections</td>
+                        </tr>
                     </table>
                 `
             },
             {
                 id: 'isi-component',
                 name: 'ISI Component',
-                category: 'page-frame',
-                description: 'Important Safety Information with full module, desktop drawer (200 characters), and mobile drawer',
-                tags: ['ISI', 'important safety information', 'desktop drawer', 'mobile drawer', '200 characters', 'boxed warning'],
-                dimensions: ['200 characters for ISI and Indication', '2-column desktop', '1-column mobile'],
+                description: 'Important Safety Information display component',
+                category: 'content',
+                tags: ['medical', 'safety', 'regulatory'],
                 nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>ISI Component displays Important Safety Information content in multiple ways on the website.</p>
-                    <h4>Column Titles</h4>
-                    <ul><li><strong>First Column:</strong> "Important Safety Information"</li>
-                    <li><strong>Second Column HCP:</strong> "Indication" (single) or "Indications" (multi)</li>
-                    <li><strong>Second Column DTC:</strong> "Indication" OR "Approved Use" (single) or "Indications" OR "Approved Uses" (multi)</li></ul>
-                    <h4>Desktop Drawer Requirements</h4>
-                    <ul><li><strong>Character Count:</strong> 200 characters for ISI and 200 characters for Indication</li>
-                    <li><strong>Ellipses:</strong> Add ellipses at end of 200 characters for both</li></ul>
-                    <h4>Boxed WARNING</h4>
-                    <ul><li><strong>Formatting:</strong> Bold text, no physical box</li>
-                    <li><strong>Content:</strong> Begin with "Boxed WARNING:" (boxed initial cap, WARNING all caps, both bold)</li>
-                    <li><strong>Character Count:</strong> No limit - complete content must appear</li></ul>
-                    <h4>CTA Copy - Desktop Drawer</h4>
-                    <div class="copy-box">"Click or scroll to see IMPORTANT SAFETY INFORMATION AND APPROVED USE"</div>
-                    <p><strong>With Boxed WARNING:</strong> "Click or scroll to see IMPORTANT SAFETY INFORMATION, INCLUDING BOXED WARNING, AND APPROVED USE"</p>
-                    <h4>CTA Copy - Mobile Drawer</h4>
-                    <div class="copy-box">"Tap to see IMPORTANT SAFETY INFORMATION AND APPROVED USE"</div>
-                    <div class="important-note"><strong>Important!</strong> Font size of ISI must match website body copy. ISI Drawer not available on Gateway pages.</div>
+                    <h3>Purpose & Usage</h3>
+                    <p>Displays Important Safety Information (ISI) as required by regulatory guidelines for pharmaceutical products.</p>
+                    
+                    <h3>Content Requirements</h3>
+                    <ul>
+                        <li>Must display complete ISI text as provided by medical/legal teams</li>
+                        <li>No editing or modification of ISI content allowed without approval</li>
+                        <li>Must be clearly labeled as "Important Safety Information"</li>
+                        <li>Include link to full Prescribing Information PDF</li>
+                        <li>Include link to Medication Guide where applicable</li>
+                    </ul>
+                    
+                    <h3>Display Requirements</h3>
+                    <ul>
+                        <li>Prominent positioning (typically bottom of page or sidebar)</li>
+                        <li>Clear visual distinction from other content</li>
+                        <li>Readable typography and sufficient contrast</li>
+                        <li>No overlapping with other page elements</li>
+                        <li>Always visible when product information is present</li>
+                    </ul>
+                    
+                    <h3>Regulatory Compliance</h3>
+                    <ul>
+                        <li>Must meet FDA guidelines for digital media</li>
+                        <li>Content must match approved labeling</li>
+                        <li>Links to official prescribing information required</li>
+                        <li>Regular review and updates as needed</li>
+                    </ul>
                 `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>ISI Module (Full)</td><td>2-column layout</td><td>1-column stacked</td></tr>
-                        <tr><td>Desktop Drawer</td><td class="highlight">200 characters each</td><td>N/A</td></tr>
-                        <tr><td>Mobile Drawer</td><td>N/A</td><td>CTA bar only</td></tr>
-                        <tr><td>Font Size</td><td>Match body copy</td><td>Match body copy</td></tr>
-                        <tr><td>Boxed WARNING</td><td>Bold, no character limit</td><td>Bold, no character limit</td></tr>
+                technicalContent: `
+                    <h3>Container Styling</h3>
+                    <ul>
+                        <li>Background: #f8f9fa</li>
+                        <li>Border: 2px solid #dee2e6</li>
+                        <li>Padding: 20px</li>
+                        <li>Margin: 20px 0</li>
+                        <li>Border-radius: 4px</li>
+                        <li>Min-height: 200px</li>
+                    </ul>
+                    
+                    <h3>Typography Specifications</h3>
+                    <table>
+                        <tr>
+                            <th>Element</th>
+                            <th>Font Size</th>
+                            <th>Font Weight</th>
+                            <th>Color</th>
+                        </tr>
+                        <tr>
+                            <td>ISI Header</td>
+                            <td>18px</td>
+                            <td>Bold (700)</td>
+                            <td>#2c3e50</td>
+                        </tr>
+                        <tr>
+                            <td>ISI Body Text</td>
+                            <td>14px</td>
+                            <td>Normal (400)</td>
+                            <td>#333333</td>
+                        </tr>
+                        <tr>
+                            <td>Links</td>
+                            <td>14px</td>
+                            <td>Normal (400)</td>
+                            <td>#0066cc</td>
+                        </tr>
+                        <tr>
+                            <td>Link Hover</td>
+                            <td>14px</td>
+                            <td>Underline</td>
+                            <td>#004499</td>
+                        </tr>
                     </table>
+                    
+                    <h3>Mobile Image Sizing</h3>
+                    <table>
+                        <tr>
+                            <th>Device</th>
+                            <th>Container Width</th>
+                            <th>Font Adjustment</th>
+                        </tr>
+                        <tr>
+                            <td>Mobile (320px-767px)</td>
+                            <td>100% width, 15px padding</td>
+                            <td>13px body text minimum</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet (768px-1023px)</td>
+                            <td>95% width, 18px padding</td>
+                            <td>Standard sizing</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Accessibility Requirements</h3>
+                    <ul>
+                        <li>Minimum contrast ratio: 4.5:1</li>
+                        <li>Screen reader friendly markup with proper headings</li>
+                        <li>Keyboard navigation support for all interactive elements</li>
+                        <li>Focus indicators on links and buttons</li>
+                    </ul>
                 `
             },
             {
                 id: 'error-pages',
                 name: 'Error Pages',
-                category: 'content',
-                description: 'Error pages with specific required language for 404, 403, and 500 errors',
-                tags: ['error', '404', '403', '500', 'not found', 'forbidden', 'server error'],
-                dimensions: ['Domain level', 'One per error type per domain'],
+                description: 'Standardized error page templates (404, 500, etc.)',
+                category: 'utility',
+                tags: ['error', 'templates', '404', '500'],
                 nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Error Pages are created at the website domain level. Important for multi-indication brands - only one error page per error type per domain.</p>
-                    <h4>Required Error Messages</h4>
-                    <table class="spec-table">
-                        <tr><th>Error Type</th><th>Title</th><th>Body Copy</th><th>CTA</th></tr>
-                        <tr><td>404 (Not Found)</td><td>The webpage you are looking for is unavailable.</td><td>The URL may have been incorrectly typed or the page may have been moved, deleted, or incorporated into another part of the website.</td><td>Back to Home</td></tr>
-                        <tr><td>403 (Forbidden)</td><td>We're sorry you do not have access.</td><td>Not to worry. You can head over to our homepage or check out some of our content.</td><td>Back to Home</td></tr>
-                        <tr><td>500 (Server Error)</td><td>We're sorry - it looks like there is an issue.</td><td>Not to worry. You can head over to our homepage or check out some of our content.</td><td>Back to Home</td></tr>
-                    </table>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Creation Level</td><td>Domain level</td><td>Domain level</td></tr>
-                        <tr><td>Quantity</td><td>One per error type per domain</td><td>One per error type per domain</td></tr>
-                        <tr><td>CTA Destination</td><td>Homepage</td><td>Homepage</td></tr>
-                        <tr><td>Required Elements</td><td>Title, Body Copy, CTA</td><td>Title, Body Copy, CTA</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'external-link-modal',
-                name: 'External Link Modal',
-                category: 'content',
-                description: 'Modal that alerts users they are navigating away from Novartis site to external website',
-                tags: ['modal', 'external link', 'novartis', 'navigation', 'warning'],
-                dimensions: ['Modal overlay'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>The External Link Modal alerts the user they are navigating away from a Novartis operated website to an external website.</p>
-                    <h4>Required Language</h4>
-                    <div class="copy-box"><strong>Title:</strong> You are about to leave [domain.com]<br><br><strong>Sub-Title:</strong> You are about to leave a Novartis site and continue to an external website independently operated and not managed by Novartis Pharmaceuticals Corporation.<br><br><strong>CTA Button:</strong> Continue to External Site</div>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Specification</th></tr>
-                        <tr><td>Modal Type</td><td>Overlay modal</td></tr>
-                        <tr><td>Trigger</td><td>External link click</td></tr>
-                        <tr><td>Required Elements</td><td>Title, Sub-title, CTA button</td></tr>
-                        <tr><td>CTA Text</td><td class="highlight">Continue to External Site</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'images-graphics',
-                name: 'Images & Graphics',
-                category: 'additional',
-                description: 'Image specifications with sizing guide, alt text requirements, and optimization guidelines',
-                tags: ['images', 'graphics', 'alt text', 'optimization', '1920x1080', '800x600', '200x200'],
-                dimensions: ['1920x1080px hero', '800x600px content', '200x200px thumbnails', '32x32px icons'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Enhance content with relevant, high-quality visuals that support the narrative and improve user engagement.</p>
-                    <h4>Alt Text Requirements</h4>
-                    <ul><li><strong>Provide alt text</strong> to communicate content and function of images</li>
-                    <li><strong>For complex images:</strong> Provide long text alternative if exceeding 125 characters</li>
-                    <li><strong>For decorative images:</strong> Use empty alt attribute ("null")</li></ul>
-                    <h4>Best Practices for Alt Text</h4>
-                    <ul><li><strong>Brief and concise:</strong> Short phrase or couple sentences</li>
-                    <li><strong>Descriptive & Informative:</strong> Encapsulate what image is about</li>
-                    <li><strong>Functional:</strong> If image is link, convey purpose not appearance</li>
-                    <li><strong>Not Redundant:</strong> Avoid "image of..." or "graphic of..."</li>
-                    <li><strong>Contextual:</strong> Consider context in which image is used</li></ul>
-                    <h4>Content Requirements</h4>
-                    <ul><li>Use high-quality, professional images aligned with brand standards</li>
-                    <li>Ensure proper licensing and usage rights</li>
-                    <li>Consider cultural sensitivity and inclusivity</li>
-                    <li>Maintain consistent visual style across all imagery</li></ul>
-                `,
-                technicalSpecs: `
-                    <h3>Image Sizing Guide (Priority)</h3>
-                    <table class="spec-table">
-                        <tr><th>Image Type</th><th>
+                    <h3>Purpose & Usage</h3>
+                    <p>Provides user-friendly error pages that maintain site navigation and branding while clearly communicating the error.</p>
+                    
+                    <h3>Required Error Types</h3>
+                    <ul>
+                        <li><strong>404 Not Found:</strong> "Sorry, the page you're looking for doesn't exist."</li>
+                        <li><strong>500 Server Error:</strong> "We're experiencing technical difficulties. Please try again later."</li>
+                        <li><strong>503 Maintenance:</strong> "Site is temporarily unavailable for maintenance."</li>
+                        <li><strong>Access Denied:</strong> "You don't have permission to view this page."</li>
+                    </ul>
+                    
+                    <h3>Content Requirements</h3>
+                    <ul>
+                        <li>Clear, non-technical explanation of the error</li>
+                        <li>Helpful next steps for users</li>
+                        <li>Navigation back to main site areas (Home, Site Map)</li>
+                        <li>Search functionality when appropriate</li>
+                        <li>Contact information for further assistance</li>
+                        <li>Consistent branding with main site</li>
+                    </ul>
+                    
+                    <h3>User Experience Guidelines</h3>
