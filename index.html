@@ -6,208 +6,51 @@
     <title>Drupal Web Operations Component Specifications</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .login-modal {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.6; }
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .login-modal { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); text-align: center; max-width: 400px; width: 90%; }
         .login-modal h2 { margin-bottom: 20px; color: #2c3e50; }
-        .login-modal input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .login-modal button {
-            width: 100%;
-            padding: 12px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+        .login-modal input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .login-modal button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; margin-top: 10px; }
         .login-modal button:hover { background-color: #2980b9; }
         .error-message { color: #e74c3c; margin-top: 10px; font-size: 14px; }
-
         .main-content { display: none; }
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        .header { background-color: #2c3e50; color: white; padding: 20px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .header h1 { font-size: 2.5em; margin-bottom: 10px; }
         .header p { font-size: 1.2em; opacity: 0.9; }
-
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .search-section {
-            background: white;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .search-input {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
+        .search-section { background: white; padding: 30px; margin: 30px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .search-input { width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 20px; }
         .search-input:focus { outline: none; border-color: #3498db; }
-
         .filters { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 8px 16px;
-            background-color: #ecf0f1;
-            border: 1px solid #bdc3c7;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .filter-btn.active {
-            background-color: #3498db;
-            color: white;
-            border-color: #3498db;
-        }
-
-        .components-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .component-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .component-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
+        .filter-btn { padding: 8px 16px; background-color: #ecf0f1; border: 1px solid #bdc3c7; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn.active { background-color: #3498db; color: white; border-color: #3498db; }
+        .components-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+        .component-card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .component-card:hover { transform: translateY(-5px); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
         .component-card h3 { color: #2c3e50; margin-bottom: 10px; font-size: 1.3em; }
         .component-card p { color: #7f8c8d; margin-bottom: 15px; }
-
         .component-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-        .tag {
-            background-color: #e8f4f8;
-            color: #2980b9;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
-        }
-
-        .component-detail {
-            display: none;
-            background: white;
-            margin: 30px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .component-header {
-            background: #34495e;
-            color: white;
-            padding: 30px;
-            border-radius: 8px 8px 0 0;
-        }
+        .tag { background-color: #e8f4f8; color: #2980b9; padding: 3px 8px; border-radius: 12px; font-size: 0.8em; }
+        .component-detail { display: none; background: white; margin: 30px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .component-header { background: #34495e; color: white; padding: 30px; border-radius: 8px 8px 0 0; }
         .component-header h1 { font-size: 2.2em; margin-bottom: 10px; }
-        .back-btn {
-            background: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
+        .back-btn { background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
         .back-btn:hover { background: #2980b9; }
-
-        .toggle-buttons {
-            display: flex;
-            background: #f8f9fa;
-            border-radius: 6px;
-            margin: 20px 30px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .toggle-btn {
-            flex: 1;
-            padding: 15px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
+        .toggle-buttons { display: flex; background: #f8f9fa; border-radius: 6px; margin: 20px 30px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .toggle-btn { flex: 1; padding: 15px; background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; font-weight: 600; }
         .toggle-btn.active { background: #3498db; color: white; }
-
         .content-section { padding: 30px; }
         .content-panel { display: none; }
         .content-panel.active { display: block; }
-        .content-panel h3 {
-            color: #2c3e50;
-            margin: 20px 0 10px 0;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-        }
+        .content-panel h3 { color: #2c3e50; margin: 20px 0 10px 0; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
         .content-panel ul { margin-left: 20px; margin-bottom: 15px; }
         .content-panel li { margin-bottom: 5px; }
-
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
         table th, table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         table th { background-color: #f2f2f2; font-weight: 600; }
-
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
-            font-size: 1.2em;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .filters { justify-content: center; }
-            .components-grid { grid-template-columns: 1fr; }
-            .toggle-buttons { flex-direction: column; margin: 20px 15px; }
-            .container { padding: 15px; }
-        }
+        .no-results { text-align: center; padding: 40px; color: #7f8c8d; font-size: 1.2em; }
+        @media (max-width: 768px) { .header h1 { font-size: 2em; } .filters { justify-content: center; } .components-grid { grid-template-columns: 1fr; } .toggle-buttons { flex-direction: column; margin: 20px 15px; } .container { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -241,9 +84,7 @@
                     </div>
                 </div>
                 <div id="componentsGrid" class="components-grid"></div>
-                <div id="noResults" class="no-results" style="display: none;">
-                    No components found matching your search criteria.
-                </div>
+                <div id="noResults" class="no-results" style="display: none;">No components found matching your search criteria.</div>
             </div>
         </div>
 
@@ -269,9 +110,7 @@
     <script>
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
-            const correctPassword = 'Rallyweb25#';
-            
-            if (password === correctPassword) {
+            if (password === 'Rallyweb25#') {
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
                 initializeComponents();
@@ -282,12 +121,9 @@
         }
 
         document.getElementById('passwordInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                checkPassword();
-            }
+            if (event.key === 'Enter') { checkPassword(); }
         });
 
-        // COMPONENTS ARRAY - ADD MORE COMPONENTS HERE
         const components = [
             {
                 id: 'utility-navigation',
@@ -319,75 +155,22 @@
         ];
 
         let filteredComponents = components;
-        / COMPONENTS ARRAY - ADD MORE COMPONENTS HERE
-        const components = [
-            {
-                id: 'utility-navigation',
-                name: 'Utility Navigation',
-                description: 'Top-level navigation with account, language, and accessibility tools',
-                category: 'navigation',
-                tags: ['navigation', 'utility', 'accessibility'],
-                nvsContent: `<h3>Purpose & Usage</h3><p>The Utility Navigation appears at the top of every page and provides quick access to essential site functions.</p><h3>Required Elements</h3><ul><li><strong>Contact Us:</strong> Links to main contact page</li><li><strong>Text Size:</strong> A+ | A | A- controls for accessibility</li><li><strong>Language Toggle:</strong> English | Español switcher</li><li><strong>Site Search:</strong> Search input field with submit button</li></ul>`,
-                technicalContent: `<h3>Layout Specifications</h3><ul><li>Full width container with max-width: 1200px</li><li>Background: #f8f9fa</li><li>Height: 40px minimum</li><li>Padding: 8px 20px</li></ul><h3>Styling</h3><ul><li>Font: Arial, sans-serif</li><li>Font size: 14px</li><li>Link color: #0066cc</li><li>Link hover: #004499</li></ul>`
-            },
-            {
-                id: 'footer-module',
-                name: 'Footer Module',
-                description: 'Site-wide footer with navigation links and legal information',
-                category: 'navigation',
-                tags: ['footer', 'navigation', 'legal'],
-                nvsContent: `<h3>Purpose & Usage</h3><p>The footer appears on every page and contains important navigation links, legal information, and company details.</p><h3>Required Content Sections</h3><ul><li><strong>Quick Links:</strong> Key site navigation items</li><li><strong>Legal:</strong> Privacy Policy, Terms of Use, etc.</li><li><strong>Company Information:</strong> Address, phone, copyright</li><li><strong>Social Media:</strong> Links to official social accounts</li></ul>`,
-                technicalContent: `<h3>Layout Structure</h3><ul><li>Four-column grid on desktop</li><li>Background: #2c3e50</li><li>Text color: #ffffff</li><li>Padding: 40px 20px</li></ul><h3>Link Specifications</h3><table><tr><th>Property</th><th>Value</th></tr><tr><td>Font Size</td><td>14px</td></tr><tr><td>Link Color</td><td>#ffffff</td></tr><tr><td>Link Hover</td><td>#3498db</td></tr></table>`
-            },
-            {
-                id: 'cta-buttons',
-                name: 'CTA Buttons',
-                description: 'Call-to-action buttons with consistent styling and behavior',
-                category: 'content',
-                tags: ['buttons', 'cta', 'interactive'],
-                nvsContent: `<h3>Purpose & Usage</h3><p>Standardized call-to-action buttons that guide users to important actions and maintain consistent user experience.</p><h3>Button Types</h3><ul><li><strong>Primary CTA:</strong> Main action button (blue background)</li><li><strong>Secondary CTA:</strong> Supporting action (outlined style)</li><li><strong>Tertiary CTA:</strong> Minor actions (text link style)</li></ul>`,
-                technicalContent: `<h3>Button Specifications</h3><table><tr><th>Button Type</th><th>Background</th><th>Text Color</th></tr><tr><td>Primary</td><td>#0066cc</td><td>#ffffff</td></tr><tr><td>Secondary</td><td>Transparent</td><td>#0066cc</td></tr><tr><td>Tertiary</td><td>Transparent</td><td>#0066cc</td></tr></table>`
-            }
-        ];
 
-        function initializeComponents() {
-            renderComponents();
-            setupSearch();
-        }
+        function initializeComponents() { renderComponents(); setupSearch(); }
 
         function renderComponents() {
             const grid = document.getElementById('componentsGrid');
             const noResults = document.getElementById('noResults');
-            
-            if (filteredComponents.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
-            }
-            
+            if (filteredComponents.length === 0) { grid.innerHTML = ''; noResults.style.display = 'block'; return; }
             noResults.style.display = 'none';
-            grid.innerHTML = filteredComponents.map(component => `
-                <div class="component-card" onclick="showComponent('${component.id}')">
-                    <h3>${component.name}</h3>
-                    <p>${component.description}</p>
-                    <div class="component-tags">
-                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `).join('');
+            grid.innerHTML = filteredComponents.map(component => `<div class="component-card" onclick="showComponent('${component.id}')"><h3>${component.name}</h3><p>${component.description}</p><div class="component-tags">${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div></div>`).join('');
         }
 
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', function() {
                 const query = this.value.toLowerCase();
-                filteredComponents = components.filter(component => 
-                    component.name.toLowerCase().includes(query) ||
-                    component.description.toLowerCase().includes(query) ||
-                    component.tags.some(tag => tag.toLowerCase().includes(query)) ||
-                    component.nvsContent.toLowerCase().includes(query) ||
-                    component.technicalContent.toLowerCase().includes(query)
-                );
+                filteredComponents = components.filter(component => component.name.toLowerCase().includes(query) || component.description.toLowerCase().includes(query) || component.tags.some(tag => tag.toLowerCase().includes(query)) || component.nvsContent.toLowerCase().includes(query) || component.technicalContent.toLowerCase().includes(query));
                 renderComponents();
             });
         }
@@ -395,120 +178,29 @@
         function filterComponents(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
-            if (category === 'all') {
-                filteredComponents = components;
-            } else {
-                filteredComponents = components.filter(component => component.category === category);
-            }
+            if (category === 'all') { filteredComponents = components; } else { filteredComponents = components.filter(component => component.category === category); }
             renderComponents();
         }
 
         function showComponent(id) {
             const component = components.find(c => c.id === id);
             if (!component) return;
-            
             document.getElementById('homepage').style.display = 'none';
             document.getElementById('componentDetail').style.display = 'block';
             document.getElementById('componentTitle').textContent = component.name;
             document.getElementById('componentDescription').textContent = component.description;
             document.getElementById('nvsContent').innerHTML = component.nvsContent;
             document.getElementById('technicalContent').innerHTML = component.technicalContent;
-            
             showTab('nvs');
         }
 
-        function showHomepage() {
-            document.getElementById('homepage').style.display = 'block';
-            document.getElementById('componentDetail').style.display = 'none';
-        }
+        function showHomepage() { document.getElementById('homepage').style.display = 'block'; document.getElementById('componentDetail').style.display = 'none'; }
 
         function showTab(tab) {
             document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
-            
-            if (tab === 'nvs') {
-                document.querySelector('.toggle-btn').classList.add('active');
-                document.getElementById('nvsContent').classList.add('active');
-            } else {
-                document.querySelectorAll('.toggle-btn')[1].classList.add('active');
-                document.getElementById('technicalContent').classList.add('active');
-            }
-      let filteredComponents = components;
-
-        function initializeComponents() {
-            renderComponents();
-            setupSearch();
+            if (tab === 'nvs') { document.querySelector('.toggle-btn').classList.add('active'); document.getElementById('nvsContent').classList.add('active'); } else { document.querySelectorAll('.toggle-btn')[1].classList.add('active'); document.getElementById('technicalContent').classList.add('active'); }
         }
-
-        function renderComponents() {
-            const grid = document.getElementById('componentsGrid');
-            const noResults = document.getElementById('noResults');
-            
-            if (filteredComponents.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
-            }
-            
-            noResults.style.display = 'none';
-            grid.innerHTML = filteredComponents.map(component => `
-                <div class="component-card" onclick="showComponent('${component.id}')">
-                    <h3>${component.name}</h3>
-                    <p>${component.description}</p>
-                    <div class="component-tags">
-                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase();
-                filteredComponents = components.filter(component => 
-                    component.name.toLowerCase().includes(query) ||
-                    component.description.toLowerCase().includes(query) ||
-                    component.tags.some(tag => tag.toLowerCase().includes(query)) ||
-                    component.nvsContent.toLowerCase().includes(query) ||
-                    component.technicalContent.toLowerCase().includes(query)
-                );
-                renderComponents();
-            });
-        }
-
-        function filterComponents(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            if (category === 'all') {
-                filteredComponents = components;
-            } else {
-                filteredComponents = components.filter(component => component.category === category);
-            }
-            renderComponents();
-        }
-
-        function showComponent(id) {
-            const component = components.find(c => c.id === id);
-            if (!component) return;
-            
-            document.getElementById('homepage').style.display = 'none';
-            document.getElementById('componentDetail').style.display = 'block';
-            document.getElementById('componentTitle').textContent = component.name;
-            document.getElementById('componentDescription').textContent = component.description;
-            document.getElementById('nvsContent').innerHTML = component.nvsContent;
-            document.getElementById('technicalContent').innerHTML = component.technicalContent;
-            
-            showTab('nvs');
-        }
-
-        function showHomepage() {
-            document.getElementById('homepage').style.display = 'block';
-            document.getElementById('componentDetail').style.display = 'none';
-          }
-
     </script>
 </body>
 </html>
