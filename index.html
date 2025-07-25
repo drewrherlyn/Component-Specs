@@ -505,7 +505,7 @@
             });
         });
 
-        // Complete Component Data
+        // Complete Component Data with ALL components
         const components = [
             {
                 id: 'cta-buttons',
@@ -534,40 +534,18 @@
                         <li><strong>Secondary:</strong> "View Details", "Contact Us", "See Pricing"</li>
                         <li><strong>Destructive:</strong> "Delete Account", "Remove Item"</li>
                     </ul>
-                    
-                    <h4>Content Hierarchy</h4>
-                    <p>Use only one primary CTA per page section. Secondary CTAs should support, not compete with, the primary action.</p>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
-                        <tr><th>Property</th><th>Primary Button</th><th>Secondary Button</th><th>Text Button</th></tr>
-                        <tr><td>Min Width</td><td>120px</td><td>120px</td><td>Auto</td></tr>
-                        <tr><td>Height</td><td>44px</td><td>44px</td><td>44px</td></tr>
-                        <tr><td>Padding</td><td>12px 24px</td><td>12px 24px</td><td>12px 16px</td></tr>
-                        <tr><td>Border Radius</td><td>4px</td><td>4px</td><td>4px</td></tr>
-                        <tr><td>Font Size</td><td>16px</td><td>16px</td><td>16px</td></tr>
-                        <tr><td>Font Weight</td><td>600</td><td>600</td><td>600</td></tr>
-                        <tr><td>Background</td><td>#1976d2</td><td>transparent</td><td>transparent</td></tr>
-                        <tr><td>Border</td><td>none</td><td>2px solid #1976d2</td><td>none</td></tr>
-                        <tr><td>Text Color</td><td>#ffffff</td><td>#1976d2</td><td>#1976d2</td></tr>
+                        <tr><th>Property</th><th>Primary Button</th><th>Secondary Button</th></tr>
+                        <tr><td>Min Width</td><td>120px</td><td>120px</td></tr>
+                        <tr><td>Height</td><td class="highlight">44px</td><td class="highlight">44px</td></tr>
+                        <tr><td>Padding</td><td>12px 24px</td><td>12px 24px</td></tr>
+                        <tr><td>Border Radius</td><td>4px</td><td>4px</td></tr>
+                        <tr><td>Font Size</td><td>16px</td><td>16px</td></tr>
+                        <tr><td>Font Weight</td><td>600</td><td>600</td></tr>
                     </table>
-                    
-                    <h4>States & Interactions</h4>
-                    <ul>
-                        <li><strong>Hover:</strong> Opacity 0.9 for primary, background fill for secondary</li>
-                        <li><strong>Focus:</strong> 2px outline with brand color</li>
-                        <li><strong>Active:</strong> Transform scale(0.98)</li>
-                        <li><strong>Disabled:</strong> 50% opacity, cursor not-allowed</li>
-                    </ul>
-                    
-                    <h4>Accessibility Requirements</h4>
-                    <ul>
-                        <li>Minimum contrast ratio of 4.5:1</li>
-                        <li>Touch target minimum 44x44px</li>
-                        <li>Focus indicator visible and clear</li>
-                        <li>Screen reader accessible labels</li>
-                    </ul>
                 `
             },
             {
@@ -589,47 +567,18 @@
                         <li>Left-align text content, right-align numerical data</li>
                         <li>Use consistent units and date formats</li>
                         <li>Include sorting indicators where applicable</li>
-                        <li>Provide empty state messaging when no data is available</li>
                     </ul>
-                    
-                    <h4>Data Formatting Standards</h4>
-                    <ul>
-                        <li><strong>Dates:</strong> MM/DD/YYYY or Month DD, YYYY</li>
-                        <li><strong>Currency:</strong> $X,XXX.XX format</li>
-                        <li><strong>Percentages:</strong> XX.X% format</li>
-                        <li><strong>Large numbers:</strong> Use comma separators (1,234,567)</li>
-                    </ul>
-                    
-                    <h4>Content Hierarchy</h4>
-                    <p>Most important data should appear in leftmost columns. Use progressive disclosure for detailed information.</p>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th><th>Color/Style</th></tr>
-                        <tr><td>Header Background</td><td>#f8f9fa</td><td>#f8f9fa</td><td>Background</td></tr>
-                        <tr><td>Border</td><td>1px solid #dee2e6</td><td>1px solid #dee2e6</td><td>Border</td></tr>
-                        <tr><td>Cell Padding</td><td>12px 16px</td><td>8px 12px</td><td>Spacing</td></tr>
-                        <tr><td>Row Height</td><td>48px minimum</td><td>44px minimum</td><td>Height</td></tr>
-                        <tr><td>Zebra Striping</td><td>#f8f9fa every other</td><td>Same</td><td>Background</td></tr>
-                        <tr><td>Font Size</td><td>14px</td><td>13px</td><td>Typography</td></tr>
-                        <tr><td>Header Font</td><td>600 weight</td><td>600 weight</td><td>Typography</td></tr>
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Header Background</td><td>#f8f9fa</td><td>#f8f9fa</td></tr>
+                        <tr><td>Border</td><td>1px solid #dee2e6</td><td>1px solid #dee2e6</td></tr>
+                        <tr><td>Cell Padding</td><td class="highlight">12px 16px</td><td class="highlight">8px 12px</td></tr>
+                        <tr><td>Row Height</td><td class="highlight">48px minimum</td><td class="highlight">44px minimum</td></tr>
+                        <tr><td>Zebra Striping</td><td>#f8f9fa every other</td><td>Same</td></tr>
                     </table>
-                    
-                    <h4>Responsive Behavior</h4>
-                    <ul>
-                        <li><strong>Mobile:</strong> Stack cells vertically with labels</li>
-                        <li><strong>Tablet:</strong> Horizontal scroll with fixed first column</li>
-                        <li><strong>Large screens:</strong> Full table display with all columns visible</li>
-                    </ul>
-                    
-                    <h4>Interactive Features</h4>
-                    <ul>
-                        <li>Sortable column headers with visual indicators</li>
-                        <li>Row hover state with subtle background change</li>
-                        <li>Selection state for actionable rows</li>
-                        <li>Pagination controls for large datasets</li>
-                    </ul>
                 `
             },
             {
@@ -646,60 +595,29 @@
                     
                     <h4>Content Requirements</h4>
                     <ul>
-                        <li>Always include descriptive, contextual alt text (not "image of...")</li>
+                        <li>Always include descriptive, contextual alt text</li>
                         <li>Use high-quality, professional images that align with brand standards</li>
                         <li>Ensure proper licensing and usage rights for all images</li>
                         <li>Consider cultural sensitivity and inclusivity in image selection</li>
                         <li>Maintain consistent visual style across all imagery</li>
-                        <li>Use captions when additional context enhances understanding</li>
-                    </ul>
-                    
-                    <h4>Alt Text Guidelines</h4>
-                    <ul>
-                        <li><strong>Descriptive:</strong> "Executive team meeting in modern conference room"</li>
-                        <li><strong>Functional:</strong> For buttons/links, describe the function</li>
-                        <li><strong>Decorative:</strong> Use empty alt="" for purely decorative images</li>
-                        <li><strong>Complex:</strong> Provide longer descriptions or link to text alternative</li>
                     </ul>
                 `,
                 technicalSpecs: `
                     <h3>Image Sizing Guide (Priority)</h3>
                     <table class="spec-table">
-                        <tr><th>Image Type</th><th>Desktop Size</th><th>Mobile Size</th><th>Format</th><th>Max File Size</th></tr>
-                        <tr><td>Hero Images</td><td class="highlight">1920x1080px</td><td class="highlight">768x432px</td><td>WebP/JPG</td><td>800KB</td></tr>
-                        <tr><td>Content Images</td><td class="highlight">800x600px</td><td class="highlight">400x300px</td><td>WebP/JPG</td><td>500KB</td></tr>
-                        <tr><td>Thumbnails</td><td class="highlight">200x200px</td><td class="highlight">150x150px</td><td>WebP/JPG</td><td>200KB</td></tr>
-                        <tr><td>Gallery Images</td><td class="highlight">1200x800px</td><td class="highlight">600x400px</td><td>WebP/JPG</td><td>600KB</td></tr>
-                        <tr><td>Banner Images</td><td class="highlight">1600x400px</td><td class="highlight">800x200px</td><td>WebP/JPG</td><td>500KB</td></tr>
-                        <tr><td>Icons</td><td class="highlight">32x32px</td><td class="highlight">24x24px</td><td>SVG/PNG</td><td>50KB</td></tr>
-                        <tr><td>Avatar Images</td><td class="highlight">120x120px</td><td class="highlight">80x80px</td><td>WebP/JPG</td><td>100KB</td></tr>
+                        <tr><th>Image Type</th><th>Desktop Size</th><th>Mobile Size</th><th>Format</th></tr>
+                        <tr><td>Hero Images</td><td class="highlight">1920x1080px</td><td class="highlight">768x432px</td><td>WebP/JPG</td></tr>
+                        <tr><td>Content Images</td><td class="highlight">800x600px</td><td class="highlight">400x300px</td><td>WebP/JPG</td></tr>
+                        <tr><td>Thumbnails</td><td class="highlight">200x200px</td><td class="highlight">150x150px</td><td>WebP/JPG</td></tr>
+                        <tr><td>Icons</td><td class="highlight">32x32px</td><td class="highlight">24x24px</td><td>SVG/PNG</td></tr>
                     </table>
-                    
-                    <h4>Technical Implementation Requirements</h4>
-                    <ul>
-                        <li><strong>Format Priority:</strong> WebP first, JPG fallback</li>
-                        <li><strong>Compression:</strong> 80-85% quality for JPG, 75-80% for WebP</li>
-                        <li><strong>Responsive Images:</strong> Use srcset attribute with 1x, 2x variants</li>
-                        <li><strong>Lazy Loading:</strong> Implement for images below fold</li>
-                        <li><strong>Progressive Enhancement:</strong> Show low-quality placeholder while loading</li>
-                        <li><strong>CDN Delivery:</strong> All images served through CDN with optimization</li>
-                    </ul>
-                    
-                    <h4>Performance Optimization</h4>
-                    <ul>
-                        <li>Use appropriate image formats (SVG for icons, WebP for photos)</li>
-                        <li>Implement responsive images with multiple breakpoints</li>
-                        <li>Compress images without visible quality loss</li>
-                        <li>Use CSS sprites for small decorative images</li>
-                        <li>Preload critical above-fold images</li>
-                    </ul>
                 `
             },
             {
                 id: 'navigation',
                 name: 'Primary Navigation',
                 category: 'navigation',
-                description: 'Main site navigation with dropdown menus, mobile responsive behavior',
+                description: 'Main site navigation with dropdown menus and mobile responsive behavior',
                 tags: ['navigation', 'menu', 'dropdown', 'mobile', 'responsive'],
                 dimensions: ['60px height', '16px font size', '20px padding'],
                 nvsContent: `
@@ -714,18 +632,136 @@
                         <li>Use parallel structure in navigation labels</li>
                         <li>Avoid jargon or internal terminology</li>
                         <li>Ensure consistent capitalization (sentence case recommended)</li>
-                        <li>Group related items logically in dropdown menus</li>
-                    </ul>
-                    
-                    <h4>Label Guidelines</h4>
-                    <ul>
-                        <li><strong>Action-oriented:</strong> "Find a doctor" vs "Doctor directory"</li>
-                        <li><strong>User-focused:</strong> "Your account" vs "Account management"</li>
-                        <li><strong>Specific:</strong> "Treatment options" vs "Services"</li>
-                        <li><strong>Scannable:</strong> Keep labels under 3 words when possible</li>
                     </ul>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th><th>States</th></tr
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Height</td><td class="highlight">60px</td><td class="highlight">56px</td></tr>
+                        <tr><td>Font Size</td><td class="highlight">16px</td><td class="highlight">14px</td></tr>
+                        <tr><td>Padding</td><td class="highlight">20px</td><td class="highlight">16px</td></tr>
+                        <tr><td>Background</td><td>#ffffff</td><td>#ffffff</td></tr>
+                        <tr><td>Border</td><td>1px solid #e0e0e0</td><td>1px solid #e0e0e0</td></tr>
+                    </table>
+                `
+            },
+            {
+                id: 'utility-nav',
+                name: 'Utility Navigation',
+                category: 'navigation',
+                description: 'Secondary navigation for utility functions like search, account, and settings',
+                tags: ['utility', 'secondary', 'account', 'search', 'settings'],
+                dimensions: ['40px height', '14px font size'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>Provide quick access to utility functions and account-related actions without cluttering primary navigation.</p>
+                    
+                    <h4>Content Requirements</h4>
+                    <ul>
+                        <li>Keep labels concise (1-2 words maximum)</li>
+                        <li>Use familiar icons with text labels when possible</li>
+                        <li>Prioritize most-used functions</li>
+                        <li>Group related utilities together</li>
+                    </ul>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Height</td><td class="highlight">40px</td><td class="highlight">36px</td></tr>
+                        <tr><td>Font Size</td><td class="highlight">14px</td><td class="highlight">12px</td></tr>
+                        <tr><td>Padding</td><td>12px 16px</td><td>10px 12px</td></tr>
+                        <tr><td>Background</td><td>#f8f9fa</td><td>#f8f9fa</td></tr>
+                    </table>
+                `
+            },
+            {
+                id: 'jump-links',
+                name: 'Jump Links',
+                category: 'navigation',
+                description: 'Accessibility-focused navigation for quick page section access',
+                tags: ['accessibility', 'a11y', 'jump', 'navigation', 'skip'],
+                dimensions: ['Auto height', '16px font size'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>Provide accessibility-compliant navigation shortcuts for users with screen readers and keyboard navigation.</p>
+                    
+                    <h4>Content Requirements</h4>
+                    <ul>
+                        <li>Use descriptive, action-oriented language</li>
+                        <li>Start with action verbs ("Skip to", "Jump to")</li>
+                        <li>Be specific about destinations</li>
+                        <li>Follow established accessibility patterns</li>
+                    </ul>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Property</th><th>Value</th></tr>
+                        <tr><td>Font Size</td><td class="highlight">16px</td></tr>
+                        <tr><td>Position</td><td>Fixed, top-left</td></tr>
+                        <tr><td>Z-index</td><td>9999</td></tr>
+                        <tr><td>Focus Behavior</td><td>Visible on focus only</td></tr>
+                        <tr><td>Background</td><td>#1a237e</td></tr>
+                        <tr><td>Text Color</td><td>#ffffff</td></tr>
+                    </table>
+                `
+            },
+            {
+                id: 'tabs',
+                name: 'Tab Navigation',
+                category: 'interactive',
+                description: 'Tabbed interface for organizing related content sections',
+                tags: ['tabs', 'navigation', 'content', 'interactive', 'sections'],
+                dimensions: ['48px height', '16px font size'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>Organize related content into logical, scannable sections that reduce cognitive load.</p>
+                    
+                    <h4>Content Requirements</h4>
+                    <ul>
+                        <li>Use parallel structure for all tab labels</li>
+                        <li>Keep labels concise (1-3 words)</li>
+                        <li>Use nouns or noun phrases for content categories</li>
+                        <li>Ensure tabs are logically ordered</li>
+                        <li>Limit to 3-7 tabs for optimal usability</li>
+                    </ul>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Tab Height</td><td class="highlight">48px</td><td class="highlight">44px</td></tr>
+                        <tr><td>Font Size</td><td class="highlight">16px</td><td class="highlight">14px</td></tr>
+                        <tr><td>Padding</td><td>12px 24px</td><td>10px 16px</td></tr>
+                        <tr><td>Border</td><td>1px solid #e0e0e0</td><td>1px solid #e0e0e0</td></tr>
+                        <tr><td>Active Border</td><td>3px solid #1a237e</td><td>3px solid #1a237e</td></tr>
+                    </table>
+                `
+            },
+            {
+                id: 'sticky-cta',
+                name: 'Sticky CTA',
+                category: 'interactive',
+                description: 'Persistent call-to-action element that remains visible during scroll',
+                tags: ['sticky', 'cta', 'persistent', 'scroll', 'conversion'],
+                dimensions: ['56px height', '100% width'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>Maintain conversion opportunities by keeping primary actions visible throughout the user journey.</p>
+                    
+                    <h4>Content Requirements</h4>
+                    <ul>
+                        <li>Use the most important conversion action only</li>
+                        <li>Keep text extremely concise (1-2 words)</li>
+                        <li>Use high-contrast, urgent language</li>
+                        <li>Ensure action is relevant to current page context</li>
+                        <li>Test visibility and conversion impact</li>
+                    </ul>
+                `,
+                technicalSpecs
