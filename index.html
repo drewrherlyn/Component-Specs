@@ -319,6 +319,36 @@
         ];
 
         let filteredComponents = components;
+        / COMPONENTS ARRAY - ADD MORE COMPONENTS HERE
+        const components = [
+            {
+                id: 'utility-navigation',
+                name: 'Utility Navigation',
+                description: 'Top-level navigation with account, language, and accessibility tools',
+                category: 'navigation',
+                tags: ['navigation', 'utility', 'accessibility'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>The Utility Navigation appears at the top of every page and provides quick access to essential site functions.</p><h3>Required Elements</h3><ul><li><strong>Contact Us:</strong> Links to main contact page</li><li><strong>Text Size:</strong> A+ | A | A- controls for accessibility</li><li><strong>Language Toggle:</strong> English | Español switcher</li><li><strong>Site Search:</strong> Search input field with submit button</li></ul>`,
+                technicalContent: `<h3>Layout Specifications</h3><ul><li>Full width container with max-width: 1200px</li><li>Background: #f8f9fa</li><li>Height: 40px minimum</li><li>Padding: 8px 20px</li></ul><h3>Styling</h3><ul><li>Font: Arial, sans-serif</li><li>Font size: 14px</li><li>Link color: #0066cc</li><li>Link hover: #004499</li></ul>`
+            },
+            {
+                id: 'footer-module',
+                name: 'Footer Module',
+                description: 'Site-wide footer with navigation links and legal information',
+                category: 'navigation',
+                tags: ['footer', 'navigation', 'legal'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>The footer appears on every page and contains important navigation links, legal information, and company details.</p><h3>Required Content Sections</h3><ul><li><strong>Quick Links:</strong> Key site navigation items</li><li><strong>Legal:</strong> Privacy Policy, Terms of Use, etc.</li><li><strong>Company Information:</strong> Address, phone, copyright</li><li><strong>Social Media:</strong> Links to official social accounts</li></ul>`,
+                technicalContent: `<h3>Layout Structure</h3><ul><li>Four-column grid on desktop</li><li>Background: #2c3e50</li><li>Text color: #ffffff</li><li>Padding: 40px 20px</li></ul><h3>Link Specifications</h3><table><tr><th>Property</th><th>Value</th></tr><tr><td>Font Size</td><td>14px</td></tr><tr><td>Link Color</td><td>#ffffff</td></tr><tr><td>Link Hover</td><td>#3498db</td></tr></table>`
+            },
+            {
+                id: 'cta-buttons',
+                name: 'CTA Buttons',
+                description: 'Call-to-action buttons with consistent styling and behavior',
+                category: 'content',
+                tags: ['buttons', 'cta', 'interactive'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>Standardized call-to-action buttons that guide users to important actions and maintain consistent user experience.</p><h3>Button Types</h3><ul><li><strong>Primary CTA:</strong> Main action button (blue background)</li><li><strong>Secondary CTA:</strong> Supporting action (outlined style)</li><li><strong>Tertiary CTA:</strong> Minor actions (text link style)</li></ul>`,
+                technicalContent: `<h3>Button Specifications</h3><table><tr><th>Button Type</th><th>Background</th><th>Text Color</th></tr><tr><td>Primary</td><td>#0066cc</td><td>#ffffff</td></tr><tr><td>Secondary</td><td>Transparent</td><td>#0066cc</td></tr><tr><td>Tertiary</td><td>Transparent</td><td>#0066cc</td></tr></table>`
+            }
+        ];
 
         function initializeComponents() {
             renderComponents();
@@ -404,7 +434,81 @@
                 document.querySelectorAll('.toggle-btn')[1].classList.add('active');
                 document.getElementById('technicalContent').classList.add('active');
             }
+      let filteredComponents = components;
+
+        function initializeComponents() {
+            renderComponents();
+            setupSearch();
         }
+
+        function renderComponents() {
+            const grid = document.getElementById('componentsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (filteredComponents.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            grid.innerHTML = filteredComponents.map(component => `
+                <div class="component-card" onclick="showComponent('${component.id}')">
+                    <h3>${component.name}</h3>
+                    <p>${component.description}</p>
+                    <div class="component-tags">
+                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                filteredComponents = components.filter(component => 
+                    component.name.toLowerCase().includes(query) ||
+                    component.description.toLowerCase().includes(query) ||
+                    component.tags.some(tag => tag.toLowerCase().includes(query)) ||
+                    component.nvsContent.toLowerCase().includes(query) ||
+                    component.technicalContent.toLowerCase().includes(query)
+                );
+                renderComponents();
+            });
+        }
+
+        function filterComponents(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (category === 'all') {
+                filteredComponents = components;
+            } else {
+                filteredComponents = components.filter(component => component.category === category);
+            }
+            renderComponents();
+        }
+
+        function showComponent(id) {
+            const component = components.find(c => c.id === id);
+            if (!component) return;
+            
+            document.getElementById('homepage').style.display = 'none';
+            document.getElementById('componentDetail').style.display = 'block';
+            document.getElementById('componentTitle').textContent = component.name;
+            document.getElementById('componentDescription').textContent = component.description;
+            document.getElementById('nvsContent').innerHTML = component.nvsContent;
+            document.getElementById('technicalContent').innerHTML = component.technicalContent;
+            
+            showTab('nvs');
+        }
+
+        function showHomepage() {
+            document.getElementById('homepage').style.display = 'block';
+            document.getElementById('componentDetail').style.display = 'none';
+          }
+
     </script>
 </body>
 </html>
