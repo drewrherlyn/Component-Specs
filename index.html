@@ -151,8 +151,44 @@
                 tags: ['buttons', 'cta', 'interactive'],
                 nvsContent: `<h3>Purpose & Usage</h3><p>Standardized call-to-action buttons that guide users to important actions and maintain consistent user experience.</p><h3>Button Types</h3><ul><li><strong>Primary CTA:</strong> Main action button (blue background)</li><li><strong>Secondary CTA:</strong> Supporting action (outlined style)</li><li><strong>Tertiary CTA:</strong> Minor actions (text link style)</li></ul>`,
                 technicalContent: `<h3>Button Specifications</h3><table><tr><th>Button Type</th><th>Background</th><th>Text Color</th></tr><tr><td>Primary</td><td>#0066cc</td><td>#ffffff</td></tr><tr><td>Secondary</td><td>Transparent</td><td>#0066cc</td></tr><tr><td>Tertiary</td><td>Transparent</td><td>#0066cc</td></tr></table>`
+            },
+            {
+                id: 'indication-selector',
+                name: 'Indication Selector',
+                description: 'Interactive component for selecting medical indications',
+                category: 'forms',
+                tags: ['selector', 'medical', 'interactive'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>Allows users to select from available medical indications to customize their experience.</p><h3>Required Elements</h3><ul><li>Header text: "Select Your Indication"</li><li>List of available indications as clickable options</li><li>Visual feedback for selected state</li><li>Submit/Continue button</li></ul><h3>Interaction Requirements</h3><ul><li>Single selection only (radio button behavior)</li><li>Clear visual indication of selected item</li><li>Hover states for all interactive elements</li><li>Validation message if no selection made</li></ul>`,
+                technicalContent: `<h3>Container Specifications</h3><ul><li>Background: #ffffff</li><li>Border: 1px solid #dddddd</li><li>Border-radius: 8px</li><li>Padding: 30px</li><li>Box-shadow: 0 2px 10px rgba(0,0,0,0.1)</li></ul><h3>Interactive Elements</h3><table><tr><th>Element</th><th>Dimensions</th><th>Styling</th></tr><tr><td>Option Button</td><td>Min-height: 48px</td><td>Border: 2px solid #ccc, Radius: 6px</td></tr><tr><td>Selected State</td><td>Same as default</td><td>Border: 2px solid #0066cc, Background: #f0f8ff</td></tr><tr><td>Submit Button</td><td>120px x 40px</td><td>Background: #0066cc, Color: white</td></tr></table>`
+            },
+            {
+                id: 'isi-component',
+                name: 'ISI Component',
+                description: 'Important Safety Information display component',
+                category: 'content',
+                tags: ['medical', 'safety', 'regulatory'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>Displays Important Safety Information (ISI) as required by regulatory guidelines.</p><h3>Content Requirements</h3><ul><li>Must display complete ISI text as provided by medical/legal teams</li><li>No editing or modification of ISI content allowed</li><li>Must be clearly labeled as "Important Safety Information"</li><li>Include link to full Prescribing Information</li></ul><h3>Display Requirements</h3><ul><li>Prominent positioning (typically bottom of page or sidebar)</li><li>Clear visual distinction from other content</li><li>Readable typography and sufficient contrast</li><li>No overlapping with other page elements</li></ul>`,
+                technicalContent: `<h3>Container Styling</h3><ul><li>Background: #f8f9fa</li><li>Border: 2px solid #dee2e6</li><li>Padding: 20px</li><li>Margin: 20px 0</li><li>Border-radius: 4px</li></ul><h3>Typography</h3><table><tr><th>Element</th><th>Font Size</th><th>Font Weight</th></tr><tr><td>ISI Header</td><td>18px</td><td>Bold (700)</td></tr><tr><td>ISI Body Text</td><td>14px</td><td>Normal (400)</td></tr><tr><td>Links</td><td>14px</td><td>Normal (400)</td></tr></table><h3>Accessibility</h3><ul><li>Minimum contrast ratio: 4.5:1</li><li>Screen reader friendly markup</li><li>Keyboard navigation support</li></ul>`
+            },
+            {
+                id: 'error-pages',
+                name: 'Error Pages',
+                description: 'Standardized error page templates (404, 500, etc.)',
+                category: 'utility',
+                tags: ['error', 'templates', '404', '500'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>Provides user-friendly error pages that maintain site navigation and branding while clearly communicating the error.</p><h3>Required Error Types</h3><ul><li><strong>404 Not Found:</strong> Page doesn't exist</li><li><strong>500 Server Error:</strong> Internal server problems</li><li><strong>503 Maintenance:</strong> Site maintenance mode</li><li><strong>Access Denied:</strong> Permission-based errors</li></ul><h3>Content Requirements</h3><ul><li>Clear, non-technical explanation of the error</li><li>Helpful next steps for users</li><li>Navigation back to main site areas</li><li>Search functionality when appropriate</li><li>Contact information for further assistance</li></ul>`,
+                technicalContent: `<h3>Page Structure</h3><ul><li>Full site header and navigation</li><li>Centered error message container</li><li>Suggested actions section</li><li>Standard site footer</li></ul><h3>Error Message Styling</h3><table><tr><th>Element</th><th>Specifications</th></tr><tr><td>Error Code</td><td>Font: 72px, Color: #e74c3c, Weight: Bold</td></tr><tr><td>Error Title</td><td>Font: 24px, Color: #2c3e50, Weight: 600</td></tr><tr><td>Description</td><td>Font: 16px, Color: #7f8c8d, Line-height: 1.6</td></tr></table><h3>HTTP Status Codes</h3><ul><li>Must return proper HTTP status codes</li><li>Include meta robots noindex directive</li><li>Log errors for monitoring purposes</li></ul>`
+            },
+            {
+                id: 'external-link-modal',
+                name: 'External Link Modal',
+                description: 'Warning dialog for external website navigation',
+                category: 'utility',
+                tags: ['modal', 'external', 'warning'],
+                nvsContent: `<h3>Purpose & Usage</h3><p>Displays a warning when users are about to leave the site via external links, ensuring transparency and user awareness.</p><h3>Required Content</h3><ul><li><strong>Warning Text:</strong> "You are now leaving [Site Name]"</li><li><strong>Explanation:</strong> Brief note about leaving the site</li><li><strong>Actions:</strong> Continue or Cancel buttons</li><li><strong>Disclaimer:</strong> Note about external site responsibility</li></ul><h3>Trigger Requirements</h3><ul><li>All external links (different domain)</li><li>PDF documents hosted externally</li><li>Social media links</li><li>Partner website links</li></ul>`,
+                technicalContent: `<h3>Modal Specifications</h3><ul><li>Width: 500px (max 90% viewport width)</li><li>Background: rgba(0,0,0,0.6) overlay</li><li>Modal background: #ffffff</li><li>Border-radius: 8px</li><li>Box-shadow: 0 4px 20px rgba(0,0,0,0.3)</li></ul><h3>Button Specifications</h3><table><tr><th>Button</th><th>Background</th><th>Color</th><th>Dimensions</th></tr><tr><td>Continue</td><td>#dc3545</td><td>#ffffff</td><td>120px x 40px</td></tr><tr><td>Cancel</td><td>#6c757d</td><td>#ffffff</td><td>100px x 40px</td></tr></table><h3>Behavior</h3><ul><li>Appears on external link click</li><li>Prevents default link action</li><li>Continue opens link in new tab</li><li>Cancel closes modal</li><li>ESC key closes modal</li></ul>`
             }
-        ];
+            ];
 
         let filteredComponents = components;
 
