@@ -362,6 +362,17 @@
             font-weight: 600;
         }
 
+        .important-note {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .important-note strong {
+            color: #1976d2;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -396,7 +407,7 @@
         <header class="header">
             <div class="container">
                 <h1>Drupal Web Operations Component Specifications</h1>
-                <p>Comprehensive guidelines and technical specifications for web development components</p>
+                <p>Comprehensive NVS Guidelines and technical specifications for web development components</p>
             </div>
         </header>
 
@@ -404,15 +415,13 @@
             <section class="search-section">
                 <div class="container">
                     <div class="search-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search components, dimensions, or specifications...">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search components, requirements, dimensions, or copy specifications...">
                         <select id="categoryFilter" class="filter-select">
                             <option value="">All Categories</option>
-                            <option value="universal">Universal Templates</option>
-                            <option value="navigation">Navigation</option>
+                            <option value="page-frame">Page Frame Components</option>
                             <option value="content">Content Components</option>
-                            <option value="interactive">Interactive Elements</option>
-                            <option value="layout">Layout Components</option>
-                            <option value="footer">Footer Elements</option>
+                            <option value="universal">Universal Templates</option>
+                            <option value="additional">Additional Requirements</option>
                         </select>
                         <button onclick="clearSearch()" class="clear-btn">Clear All</button>
                     </div>
@@ -474,292 +483,225 @@
 
         const components = [
             {
-                id: 'cta-buttons',
-                name: 'CTA Buttons',
-                category: 'interactive',
-                description: 'Call-to-action buttons with various styles and states for driving user engagement',
-                tags: ['buttons', 'interactive', 'cta', 'primary', 'secondary'],
-                dimensions: ['44px height', '120px min-width'],
+                id: 'utility-navigation',
+                name: 'Utility Navigation',
+                category: 'page-frame',
+                description: 'Component present at the top of all pages with audience toggle, introductory text, and required links',
+                tags: ['utility', 'navigation', 'toggle', 'prescribing information', 'REMS'],
+                dimensions: ['Top of all pages', '10 character limit for titles'],
                 nvsContent: `
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
-                    <p>CTA buttons guide users to take specific, measurable actions that align with business objectives.</p>
-                    <h4>Content Requirements</h4>
+                    <p>The Utility Navigation provides essential navigation elements and required compliance links at the top of all website pages across all screen sizes.</p>
+                    
+                    <h4>Toggle Content Options</h4>
+                    <p><strong>Consumer Titles (10 Character Limit):</strong></p>
                     <ul>
-                        <li>Use action-oriented verbs that create urgency</li>
-                        <li>Keep text concise (2-4 words maximum)</li>
-                        <li>Be specific about the expected outcome</li>
-                        <li>Use title case for consistency</li>
+                        <li>Patients</li>
+                        <li>Caregivers</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Property</th><th>Primary</th><th>Secondary</th></tr>
-                        <tr><td>Height</td><td class="highlight">44px</td><td class="highlight">44px</td></tr>
-                        <tr><td>Min Width</td><td class="highlight">120px</td><td class="highlight">120px</td></tr>
-                        <tr><td>Padding</td><td>12px 24px</td><td>12px 24px</td></tr>
-                        <tr><td>Font Size</td><td>16px</td><td>16px</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'data-tables',
-                name: 'Data Tables',
-                category: 'content',
-                description: 'Structured data presentation with sorting, filtering, and responsive design',
-                tags: ['tables', 'data', 'sorting', 'responsive'],
-                dimensions: ['48px min row height', '12px cell padding'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Present structured data in an organized, scannable format.</p>
-                    <h4>Content Requirements</h4>
+                    
+                    <p><strong>Professional Titles (10 Character Limit):</strong></p>
                     <ul>
-                        <li>Use clear, descriptive column headers</li>
-                        <li>Maintain consistent data formatting</li>
-                        <li>Left-align text, right-align numbers</li>
+                        <li>HCP</li>
+                        <li>Physicians</li>
+                        <li>Nurses</li>
+                        <li>Pharmacists</li>
+                        <li>Dentists</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Specification</th></tr>
-                        <tr><td>Row Height</td><td class="highlight">48px minimum</td></tr>
-                        <tr><td>Cell Padding</td><td class="highlight">12px 16px</td></tr>
-                        <tr><td>Header Background</td><td>#f8f9fa</td></tr>
-                        <tr><td>Border</td><td>1px solid #dee2e6</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'images-graphics',
-                name: 'Images & Graphics',
-                category: 'content',
-                description: 'Image specifications and optimization guidelines with responsive sizing',
-                tags: ['images', 'graphics', 'optimization', 'responsive'],
-                dimensions: ['1920x1080px hero', '800x600px content', '200x200px thumbnails'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Enhance content with relevant, high-quality visuals that support the narrative.</p>
-                    <h4>Content Requirements</h4>
+                    
+                    <h4>Required Introductory Text</h4>
                     <ul>
-                        <li>Always include descriptive alt text</li>
-                        <li>Use high-quality, professional images</li>
-                        <li>Ensure proper licensing</li>
-                        <li>Consider cultural sensitivity</li>
+                        <li><strong>HCP Websites:</strong> "This site is for US Health Care Professionals only."</li>
+                        <li><strong>All Other Sites:</strong> "This site is for US residents only."</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Image Sizing Guide</h3>
-                    <table class="spec-table">
-                        <tr><th>Image Type</th><th>Desktop Size</th><th>Mobile Size</th></tr>
-                        <tr><td>Hero Images</td><td class="highlight">1920x1080px</td><td class="highlight">768x432px</td></tr>
-                        <tr><td>Content Images</td><td class="highlight">800x600px</td><td class="highlight">400x300px</td></tr>
-                        <tr><td>Thumbnails</td><td class="highlight">200x200px</td><td class="highlight">150x150px</td></tr>
-                        <tr><td>Icons</td><td class="highlight">32x32px</td><td class="highlight">24x24px</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'navigation',
-                name: 'Primary Navigation',
-                category: 'navigation',
-                description: 'Main site navigation with dropdown menus and mobile responsive behavior',
-                tags: ['navigation', 'menu', 'dropdown', 'mobile'],
-                dimensions: ['60px height', '16px font size'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Provide clear, intuitive pathways for users to navigate site content.</p>
-                    <h4>Content Requirements</h4>
+                    
+                    <h4>PI Link Requirements (Branded Sites Only)</h4>
+                    <p><strong>HCP Websites - Must Read:</strong></p>
                     <ul>
-                        <li>Use clear, descriptive labels</li>
-                        <li>Limit top-level items to 7±2</li>
-                        <li>Avoid jargon</li>
-                        <li>Use parallel structure</li>
+                        <li>"Prescribing Information" OR</li>
+                        <li>"Prescribing Information, including Boxed WARNING"</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Height</td><td class="highlight">60px</td><td class="highlight">56px</td></tr>
-                        <tr><td>Font Size</td><td class="highlight">16px</td><td class="highlight">14px</td></tr>
-                        <tr><td>Padding</td><td>20px</td><td>16px</td></tr>
-                        <tr><td>Background</td><td>#ffffff</td><td>#ffffff</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'isi-footer',
-                name: 'ISI Footer',
-                category: 'footer',
-                description: 'Important Safety Information footer component for pharmaceutical content',
-                tags: ['isi', 'footer', 'pharmaceutical', 'safety', 'legal'],
-                dimensions: ['Auto height', '14px font size'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Present Important Safety Information in a compliant, accessible format.</p>
-                    <h4>Content Requirements</h4>
+                    
+                    <p><strong>DTC Websites - Must Read:</strong></p>
                     <ul>
-                        <li>Follow FDA guidelines for ISI presentation</li>
-                        <li>Ensure all required information is included</li>
-                        <li>Use clear, readable typography</li>
-                        <li>Include proper disclaimers</li>
+                        <li>"Prescribing Information" OR</li>
+                        <li>"Prescribing Information, including Boxed WARNING"</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Specification</th></tr>
-                        <tr><td>Font Size</td><td class="highlight">14px minimum</td></tr>
-                        <tr><td>Line Height</td><td>1.5</td></tr>
-                        <tr><td>Background</td><td>#f8f9fa</td></tr>
-                        <tr><td>Text Color</td><td>#333333</td></tr>
-                        <tr><td>Padding</td><td>24px</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'hero-banner',
-                name: 'Hero Banner',
-                category: 'layout',
-                description: 'Large promotional banner section with headline, subtext, and call-to-action',
-                tags: ['hero', 'banner', 'promotional', 'headline', 'cta'],
-                dimensions: ['600px min height', '1920px width'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Capture attention and communicate primary value proposition immediately.</p>
-                    <h4>Content Requirements</h4>
+                    
+                    <p><strong>If applicable, add:</strong></p>
                     <ul>
-                        <li>Write compelling, benefit-focused headlines</li>
-                        <li>Keep headlines under 10 words</li>
-                        <li>Include supporting subtext (20-30 words)</li>
-                        <li>Use single, clear call-to-action</li>
+                        <li>"Prescribing Info, including Medication Guide"</li>
+                        <li>"Instructions for Use"</li>
+                        <li>Optional: "Patient Information" (consult with Reg A&P)</li>
                     </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Min Height</td><td class="highlight">600px</td><td class="highlight">400px</td></tr>
-                        <tr><td>Max Width</td><td class="highlight">1920px</td><td class="highlight">768px</td></tr>
-                        <tr><td>Headline Size</td><td>48px</td><td>32px</td></tr>
-                        <tr><td>Subtext Size</td><td>20px</td><td>16px</td></tr>
-                        <tr><td>Padding</td><td>80px 40px</td><td>60px 20px</td></tr>
-                    </table>
-                `
-            }
-        ];
-
-        let currentView = 'nvs';
-        let currentComponent = null;
-        let allComponents = components;
-
-        function initializeComponents() {
-            displayComponents(allComponents);
-            setupSearch();
-        }
-
-        function displayComponents(componentsToShow) {
-            const grid = document.getElementById('componentsGrid');
-            grid.innerHTML = '';
-
-            componentsToShow.forEach(component => {
-                const card = document.createElement('div');
-                card.className = 'component-card';
-                card.onclick = () => showComponentDetail(component);
-                
-                card.innerHTML = `
-                    <h3>${component.name}</h3>
-                    <p>${component.description}</p>
-                    <div class="component-tags">
-                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    
+                    <p><strong>Multi-Product Sites:</strong> For brands promoting more than 1 product, a separate PI link is needed for each brand: "[Product] Prescribing Information"</p>
+                    
+                    <h4>REMS Link Requirements</h4>
+                    <ul>
+                        <li><strong>Must read (if applicable):</strong> "Risk Evaluation Mitigation Site"</li>
+                        <li><strong>Placement:</strong> Must be visible and appear immediately to the right of the PI link(s)</li>
+                    </ul>
+                    
+                    <h4>Contact a Representative Link</h4>
+                    <ul>
+                        <li><strong>Text:</strong> "Contact a Representative" (optional)</li>
+                        <li><strong>Placement:</strong> After Prescribing Information, Medical Information, and REMS</li>
+                        <li><strong>URL:</strong> https://www.novartis.com/us-en/contact-hcp</li>
+                    </ul>
+                    
+                    <div class="important-note">
+                        <strong>Important:</strong> While standard specifications are defined for the PI link, Reg A&P may find adjustments are required. When the logo containing the generic appears at the top portion of the screen, the 1st mention of the generic is required in body copy, not in the main headlines assuming headline and logo are of similar size.
                     </div>
-                `;
-                
-                grid.appendChild(card);
-            });
-
-            updateResultsInfo(componentsToShow.length);
-        }
-
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const categoryFilter = document.getElementById('categoryFilter');
-
-            function filterComponents() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const category = categoryFilter.value;
-
-                const filtered = allComponents.filter(component => {
-                    const matchesSearch = component.name.toLowerCase().includes(searchTerm) ||
-                                        component.description.toLowerCase().includes(searchTerm) ||
-                                        component.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
-                                        component.dimensions.some(dim => dim.toLowerCase().includes(searchTerm));
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Position</td><td>Top of all pages</td><td>Top of all pages</td></tr>
+                        <tr><td>Toggle Character Limit</td><td class="highlight">10 characters</td><td class="highlight">10 characters</td></tr>
+                        <tr><td>Required Elements</td><td>Toggle, Intro Text, PI Link</td><td>Toggle, Intro Text, PI Link</td></tr>
+                        <tr><td>Optional Elements</td><td>REMS, Contact Rep</td><td>REMS, Contact Rep</td></tr>
+                    </table>
                     
-                    const matchesCategory = !category || component.category === category;
+                    <h4>Link Requirements</h4>
+                    <ul>
+                        <li><strong>PI Link:</strong> Required for all branded sites</li>
+                        <li><strong>REMS Link:</strong> Required if applicable, must appear immediately right of PI link</li>
+                        <li><strong>Contact Representative:</strong> Optional, URL: https://www.novartis.com/us-en/contact-hcp</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'indication-selector',
+                name: 'Indication Selector',
+                category: 'page-frame',
+                description: 'Required component for multi-indication brands within left rail navigation',
+                tags: ['indication', 'selector', 'navigation', 'multi-indication', 'gateway'],
+                dimensions: ['Left rail navigation', 'Gateway page link'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>The Indication Selector is a required component for multi-indication brands that lives within the left rail navigation. It allows users to view/navigate to the Gateway page to view other available indications/Approved Uses.</p>
                     
-                    return matchesSearch && matchesCategory;
-                });
-
-                displayComponents(filtered);
-            }
-
-            searchInput.addEventListener('input', filterComponents);
-            categoryFilter.addEventListener('change', filterComponents);
-        }
-
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('categoryFilter').value = '';
-            displayComponents(allComponents);
-        }
-
-        function updateResultsInfo(count) {
-            const info = document.getElementById('results-info');
-            info.textContent = `Showing ${count} of ${allComponents.length} components`;
-        }
-
-        function showComponentDetail(component) {
-            currentComponent = component;
-            document.getElementById('homepage').style.display = 'none';
-            document.getElementById('component-detail').style.display = 'block';
-            document.getElementById('detail-title').textContent = component.name;
-            
-            currentView = 'nvs';
-            document.getElementById('nvs-toggle').classList.add('active');
-            document.getElementById('tech-toggle').classList.remove('active');
-            
-            showNVSContent();
-        }
-
-        function showHomepage() {
-            document.getElementById('component-detail').style.display = 'none';
-            document.getElementById('homepage').style.display = 'block';
-        }
-
-        function showNVSContent() {
-            if (!currentComponent) return;
-            
-            currentView = 'nvs';
-            document.getElementById('nvs-toggle').classList.add('active');
-            document.getElementById('tech-toggle').classList.remove('active');
-            document.getElementById('detail-content').innerHTML = currentComponent.nvsContent;
-        }
-
-        function showTechnicalSpecs() {
-            if (!currentComponent) return;
-            
-            currentView = 'tech';
-            document.getElementById('tech-toggle').classList.add('active');
-            document.getElementById('nvs-toggle').classList.remove('active');
-            document.getElementById('detail-content').innerHTML = currentComponent.technicalSpecs;
-        }
-    </script>
-</body>
-</html>
+                    <h4>Required Language</h4>
+                    <p>The language on the Indication Selector must read exactly as follows:</p>
+                    
+                    <ul>
+                        <li><strong>If HCP:</strong> "See Other Indications"</li>
+                        <li><strong>If DTC:</strong> "See Other Approved Uses"</li>
+                    </ul>
+                    
+                    <h4>Functionality</h4>
+                    <ul>
+                        <li>Links to the Gateway page</li>
+                        <li>Appears in left rail navigation</li>
+                        <li>Required for multi-indication brands only</li>
+                        <li>Consistent across desktop and mobile</li>
+                    </ul>
+                    
+                    <div class="important-note">
+                        <strong>Important:</strong> This component is only required for multi-indication brands that use a Gateway page structure. Single indication brands do not require this component.
+                    </div>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>HCP Sites</th><th>DTC Sites</th></tr>
+                        <tr><td>Required Text</td><td class="highlight">See Other Indications</td><td class="highlight">See Other Approved Uses</td></tr>
+                        <tr><td>Location</td><td>Left rail navigation</td><td>Left rail navigation</td></tr>
+                        <tr><td>Destination</td><td>Gateway page</td><td>Gateway page</td></tr>
+                        <tr><td>Requirement</td><td>Multi-indication brands only</td><td>Multi-indication brands only</td></tr>
+                    </table>
+                    
+                    <h4>Implementation Notes</h4>
+                    <ul>
+                        <li>Component appears in left rail navigation</li>
+                        <li>Links directly to Gateway page</li>
+                        <li>Text must be exactly as specified</li>
+                        <li>Consistent styling with other navigation elements</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'footer-module',
+                name: 'Footer Module',
+                category: 'page-frame',
+                description: 'Required footer component with links, Novartis logo, sign-off content, and social media icons',
+                tags: ['footer', 'links', 'novartis', 'logo', 'social', 'expiry', 'content-id'],
+                dimensions: ['Bottom of all pages', '5 spaces between expiry and content ID'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>The Footer is a required part of the frame and is consistent in content, links, and styling across every page of the site.</p>
+                    
+                    <h4>Required Footer Links</h4>
+                    <table class="spec-table">
+                        <tr><th>Link Content</th><th>Website Type</th><th>Destination URL</th></tr>
+                        <tr><td>Contact Us</td><td>DTC Websites</td><td>https://www.novartis.com/us-en/contact-non-hcp</td></tr>
+                        <tr><td>Contact Us</td><td>HCP Websites</td><td>https://www.novartis.com/us-en/contact-hcp</td></tr>
+                        <tr><td>Non-US Residents</td><td>All Websites</td><td>Link to corresponding global site or https://www.novartis.com/about</td></tr>
+                        <tr><td>Sitemap</td><td>All Websites</td><td>Link to website's sitemap page</td></tr>
+                        <tr><td>Medical Information</td><td>HCP Branded Websites</td><td>https://medinfo.novartispharmaceuticals.com/medinfo/s/</td></tr>
+                        <tr><td>Interest-Based Ads</td><td>HCP Websites (specific cases)</td><td>https://www.novartis.com/us-en/privacy#interest-based</td></tr>
+                        <tr><td>Your Privacy Choices</td><td>All Websites using OneTrust</td><td>https://privacyportal-de.onetrust.com/webform/...</td></tr>
+                    </table>
+                    
+                    <h4>Novartis Logo</h4>
+                    <ul>
+                        <li><strong>Requirement:</strong> Novartis logo must appear in footer</li>
+                        <li><strong>Link destination:</strong> https://www.novartis.com/us-en/about</li>
+                        <li><strong>Placement:</strong> Above sign-off content</li>
+                    </ul>
+                    
+                    <h4>Footer Sign-Off Language</h4>
+                    <p><strong>Required text (all websites):</strong></p>
+                    <ul>
+                        <li>Use of website is governed by the Terms of Use and Privacy Policy.</li>
+                        <li>Consumer Health Privacy Policy (DTC websites only)</li>
+                        <li>Copyright 20XX Novartis Pharmaceuticals Corporation. All rights reserved.</li>
+                    </ul>
+                    
+                    <h4>Social Media Icons</h4>
+                    <ul>
+                        <li><strong>Branded sites:</strong> "Follow [Drug Name] on Social Media"</li>
+                        <li><strong>Unbranded sites:</strong> "Follow [Unbranded Website Name] on Social Media"</li>
+                        <li><strong>Function:</strong> Link to respective social media pages (not sharing icons)</li>
+                    </ul>
+                    
+                    <h4>Asset Expiry Date and Content ID</h4>
+                    <ul>
+                        <li><strong>Format:</strong> MM/YY or M/YY for expiry date</li>
+                        <li><strong>Spacing:</strong> Must have exactly 5 spaces between Asset Expiry Date and Content ID</li>
+                        <li><strong>Examples:</strong> 10/23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;123456 or 4/24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA-12345678</li>
+                    </ul>
+                    
+                    <div class="important-note">
+                        <strong>Important:</strong> Interest-Based Ads link is ONLY for HCP websites which engage in Targeted Advertising and have not migrated to the OneTrust Cookie Banner. DTC sites use the opt-in cookie banner instead.
+                    </div>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+                        <tr><td>Position</td><td>Bottom of all pages</td><td>Bottom of all pages</td></tr>
+                        <tr><td>Logo Link</td><td>https://www.novartis.com/us-en/about</td><td>Same</td></tr>
+                        <tr><td>Expiry/ID Spacing</td><td class="highlight">5 spaces between</td><td class="highlight">5 spaces between</td></tr>
+                        <tr><td>Social Media Title</td><td>Follow [Brand/Site Name] on Social Media</td><td>Same</td></tr>
+                    </table>
+                    
+                    <h4>Link Specifications</h4>
+                    <table class="spec-table">
+                        <tr><th>Link Title</th><th>Website Type</th><th>URL</th></tr>
+                        <tr><td>Terms of Use</td><td>All Websites</td><td>https://www.novartis.com/us-en/terms-use</td></tr>
+                        <tr><td>Privacy Policy</td><td>All Websites</td><td>https://www.novartis.com/us-en/privacy</td></tr>
+                        <tr><td>Consumer Health Privacy Policy</td><td>DTC Websites</td><td>https://www.novartis.com/us-en/privacy/consumer-health</td></tr>
+                        <tr><td>Novartis Pharmaceuticals Corporation</td><td>All Websites</td><td>https://www.novartis.com/us-en/about</td></tr>
+                    </table>
+                    
+                    <h4>Important Notes</h4>
+                    <ul>
+                        <li>Trademark attributions no longer apply to first party (Novartis brands)</li>
+                        <li>Third party brand trademark attributions appear in footnotes, not footer</li>
+                        <li>The Novartis logo
