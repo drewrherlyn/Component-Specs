@@ -18,7 +18,6 @@
             background-color: #f8f9fa;
         }
 
-        /* Password Protection Styles */
         .password-container {
             display: flex;
             justify-content: center;
@@ -77,8 +76,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .password-btn:hover {
@@ -92,7 +89,6 @@
             font-weight: 500;
         }
 
-        /* Main Site Styles */
         .main-site {
             display: none;
         }
@@ -108,7 +104,6 @@
             font-size: 2.8rem;
             margin-bottom: 10px;
             font-weight: 300;
-            letter-spacing: -1px;
         }
 
         .header p {
@@ -234,15 +229,6 @@
             font-weight: 500;
         }
 
-        .component-meta {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        /* Component Detail Styles */
         .component-detail {
             display: none;
             padding: 40px 0;
@@ -364,7 +350,6 @@
             color: #1a237e;
             text-transform: uppercase;
             font-size: 0.9rem;
-            letter-spacing: 0.5px;
         }
 
         .spec-table tr:hover {
@@ -381,24 +366,15 @@
             .header h1 {
                 font-size: 2rem;
             }
-
             .search-container {
                 grid-template-columns: 1fr;
             }
-
             .components-grid {
                 grid-template-columns: 1fr;
             }
-
             .toggle-container {
                 flex-direction: column;
             }
-
-            .toggle-btn {
-                border-right: none;
-                border-bottom: 1px solid #e0e0e0;
-            }
-
             .container {
                 padding: 0 20px;
             }
@@ -406,7 +382,6 @@
     </style>
 </head>
 <body>
-    <!-- Password Protection -->
     <div id="password-protection" class="password-container">
         <div class="password-box">
             <h2>Access Required</h2>
@@ -417,9 +392,7 @@
         </div>
     </div>
 
-    <!-- Main Site Content -->
     <div id="main-site" class="main-site">
-        <!-- Header -->
         <header class="header">
             <div class="container">
                 <h1>Drupal Web Operations Component Specifications</h1>
@@ -427,9 +400,7 @@
             </div>
         </header>
 
-        <!-- Homepage -->
         <div id="homepage">
-            <!-- Search Section -->
             <section class="search-section">
                 <div class="container">
                     <div class="search-container">
@@ -449,7 +420,6 @@
                 </div>
             </section>
 
-            <!-- Components Grid -->
             <section class="components-section">
                 <div class="container">
                     <div id="componentsGrid" class="components-grid">
@@ -459,7 +429,6 @@
             </section>
         </div>
 
-        <!-- Component Detail View -->
         <div id="component-detail" class="component-detail">
             <div class="container">
                 <button onclick="showHomepage()" class="back-btn">← Back to All Components</button>
@@ -478,7 +447,6 @@
     </div>
 
     <script>
-        // Password Protection
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
             const correctPassword = 'Rallyweb25#';
@@ -496,7 +464,6 @@
             }
         }
 
-        // Allow Enter key to submit password
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
@@ -505,7 +472,6 @@
             });
         });
 
-        // Complete Component Data with ALL components
         const components = [
             {
                 id: 'cta-buttons',
@@ -518,33 +484,22 @@
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
                     <p>CTA buttons guide users to take specific, measurable actions that align with business objectives.</p>
-                    
                     <h4>Content Requirements</h4>
                     <ul>
                         <li>Use action-oriented verbs that create urgency</li>
                         <li>Keep text concise (2-4 words maximum)</li>
                         <li>Be specific about the expected outcome</li>
                         <li>Use title case for consistency</li>
-                        <li>Avoid generic terms like "Click Here" or "Submit"</li>
-                    </ul>
-                    
-                    <h4>Approved Examples</h4>
-                    <ul>
-                        <li><strong>Primary:</strong> "Learn More", "Get Started", "Download Now", "Request Demo"</li>
-                        <li><strong>Secondary:</strong> "View Details", "Contact Us", "See Pricing"</li>
-                        <li><strong>Destructive:</strong> "Delete Account", "Remove Item"</li>
                     </ul>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
-                        <tr><th>Property</th><th>Primary Button</th><th>Secondary Button</th></tr>
-                        <tr><td>Min Width</td><td>120px</td><td>120px</td></tr>
+                        <tr><th>Property</th><th>Primary</th><th>Secondary</th></tr>
                         <tr><td>Height</td><td class="highlight">44px</td><td class="highlight">44px</td></tr>
+                        <tr><td>Min Width</td><td class="highlight">120px</td><td class="highlight">120px</td></tr>
                         <tr><td>Padding</td><td>12px 24px</td><td>12px 24px</td></tr>
-                        <tr><td>Border Radius</td><td>4px</td><td>4px</td></tr>
                         <tr><td>Font Size</td><td>16px</td><td>16px</td></tr>
-                        <tr><td>Font Weight</td><td>600</td><td>600</td></tr>
                     </table>
                 `
             },
@@ -552,32 +507,28 @@
                 id: 'data-tables',
                 name: 'Data Tables',
                 category: 'content',
-                description: 'Structured data presentation with sorting, filtering, and responsive design capabilities',
-                tags: ['tables', 'data', 'sorting', 'responsive', 'structured'],
+                description: 'Structured data presentation with sorting, filtering, and responsive design',
+                tags: ['tables', 'data', 'sorting', 'responsive'],
                 dimensions: ['48px min row height', '12px cell padding'],
                 nvsContent: `
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
-                    <p>Present structured data in an organized, scannable format that enables users to quickly find and compare information.</p>
-                    
+                    <p>Present structured data in an organized, scannable format.</p>
                     <h4>Content Requirements</h4>
                     <ul>
-                        <li>Use clear, descriptive column headers that explain the data type</li>
-                        <li>Maintain consistent data formatting within columns</li>
-                        <li>Left-align text content, right-align numerical data</li>
-                        <li>Use consistent units and date formats</li>
-                        <li>Include sorting indicators where applicable</li>
+                        <li>Use clear, descriptive column headers</li>
+                        <li>Maintain consistent data formatting</li>
+                        <li>Left-align text, right-align numbers</li>
                     </ul>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Header Background</td><td>#f8f9fa</td><td>#f8f9fa</td></tr>
-                        <tr><td>Border</td><td>1px solid #dee2e6</td><td>1px solid #dee2e6</td></tr>
-                        <tr><td>Cell Padding</td><td class="highlight">12px 16px</td><td class="highlight">8px 12px</td></tr>
-                        <tr><td>Row Height</td><td class="highlight">48px minimum</td><td class="highlight">44px minimum</td></tr>
-                        <tr><td>Zebra Striping</td><td>#f8f9fa every other</td><td>Same</td></tr>
+                        <tr><th>Element</th><th>Specification</th></tr>
+                        <tr><td>Row Height</td><td class="highlight">48px minimum</td></tr>
+                        <tr><td>Cell Padding</td><td class="highlight">12px 16px</td></tr>
+                        <tr><td>Header Background</td><td>#f8f9fa</td></tr>
+                        <tr><td>Border</td><td>1px solid #dee2e6</td></tr>
                     </table>
                 `
             },
@@ -585,31 +536,29 @@
                 id: 'images-graphics',
                 name: 'Images & Graphics',
                 category: 'content',
-                description: 'Image specifications, optimization guidelines, and responsive image implementation',
-                tags: ['images', 'graphics', 'optimization', 'responsive', 'webp', 'jpg'],
-                dimensions: ['1920x1080px hero', '800x600px content', '200x200px thumbnails', '32x32px icons'],
+                description: 'Image specifications and optimization guidelines with responsive sizing',
+                tags: ['images', 'graphics', 'optimization', 'responsive'],
+                dimensions: ['1920x1080px hero', '800x600px content', '200x200px thumbnails'],
                 nvsContent: `
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
-                    <p>Enhance content with relevant, high-quality visuals that support the narrative and improve user engagement.</p>
-                    
+                    <p>Enhance content with relevant, high-quality visuals that support the narrative.</p>
                     <h4>Content Requirements</h4>
                     <ul>
-                        <li>Always include descriptive, contextual alt text</li>
-                        <li>Use high-quality, professional images that align with brand standards</li>
-                        <li>Ensure proper licensing and usage rights for all images</li>
-                        <li>Consider cultural sensitivity and inclusivity in image selection</li>
-                        <li>Maintain consistent visual style across all imagery</li>
+                        <li>Always include descriptive alt text</li>
+                        <li>Use high-quality, professional images</li>
+                        <li>Ensure proper licensing</li>
+                        <li>Consider cultural sensitivity</li>
                     </ul>
                 `,
                 technicalSpecs: `
-                    <h3>Image Sizing Guide (Priority)</h3>
+                    <h3>Image Sizing Guide</h3>
                     <table class="spec-table">
-                        <tr><th>Image Type</th><th>Desktop Size</th><th>Mobile Size</th><th>Format</th></tr>
-                        <tr><td>Hero Images</td><td class="highlight">1920x1080px</td><td class="highlight">768x432px</td><td>WebP/JPG</td></tr>
-                        <tr><td>Content Images</td><td class="highlight">800x600px</td><td class="highlight">400x300px</td><td>WebP/JPG</td></tr>
-                        <tr><td>Thumbnails</td><td class="highlight">200x200px</td><td class="highlight">150x150px</td><td>WebP/JPG</td></tr>
-                        <tr><td>Icons</td><td class="highlight">32x32px</td><td class="highlight">24x24px</td><td>SVG/PNG</td></tr>
+                        <tr><th>Image Type</th><th>Desktop Size</th><th>Mobile Size</th></tr>
+                        <tr><td>Hero Images</td><td class="highlight">1920x1080px</td><td class="highlight">768x432px</td></tr>
+                        <tr><td>Content Images</td><td class="highlight">800x600px</td><td class="highlight">400x300px</td></tr>
+                        <tr><td>Thumbnails</td><td class="highlight">200x200px</td><td class="highlight">150x150px</td></tr>
+                        <tr><td>Icons</td><td class="highlight">32x32px</td><td class="highlight">24x24px</td></tr>
                     </table>
                 `
             },
@@ -618,20 +567,18 @@
                 name: 'Primary Navigation',
                 category: 'navigation',
                 description: 'Main site navigation with dropdown menus and mobile responsive behavior',
-                tags: ['navigation', 'menu', 'dropdown', 'mobile', 'responsive'],
-                dimensions: ['60px height', '16px font size', '20px padding'],
+                tags: ['navigation', 'menu', 'dropdown', 'mobile'],
+                dimensions: ['60px height', '16px font size'],
                 nvsContent: `
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
-                    <p>Provide clear, intuitive pathways for users to navigate through the site's primary content areas.</p>
-                    
+                    <p>Provide clear, intuitive pathways for users to navigate site content.</p>
                     <h4>Content Requirements</h4>
                     <ul>
-                        <li>Use clear, descriptive labels that match user mental models</li>
-                        <li>Limit top-level items to 7±2 for cognitive load management</li>
-                        <li>Use parallel structure in navigation labels</li>
-                        <li>Avoid jargon or internal terminology</li>
-                        <li>Ensure consistent capitalization (sentence case recommended)</li>
+                        <li>Use clear, descriptive labels</li>
+                        <li>Limit top-level items to 7±2</li>
+                        <li>Avoid jargon</li>
+                        <li>Use parallel structure</li>
                     </ul>
                 `,
                 technicalSpecs: `
@@ -640,128 +587,179 @@
                         <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
                         <tr><td>Height</td><td class="highlight">60px</td><td class="highlight">56px</td></tr>
                         <tr><td>Font Size</td><td class="highlight">16px</td><td class="highlight">14px</td></tr>
-                        <tr><td>Padding</td><td class="highlight">20px</td><td class="highlight">16px</td></tr>
+                        <tr><td>Padding</td><td>20px</td><td>16px</td></tr>
                         <tr><td>Background</td><td>#ffffff</td><td>#ffffff</td></tr>
-                        <tr><td>Border</td><td>1px solid #e0e0e0</td><td>1px solid #e0e0e0</td></tr>
                     </table>
                 `
             },
             {
-                id: 'utility-nav',
-                name: 'Utility Navigation',
-                category: 'navigation',
-                description: 'Secondary navigation for utility functions like search, account, and settings',
-                tags: ['utility', 'secondary', 'account', 'search', 'settings'],
-                dimensions: ['40px height', '14px font size'],
+                id: 'isi-footer',
+                name: 'ISI Footer',
+                category: 'footer',
+                description: 'Important Safety Information footer component for pharmaceutical content',
+                tags: ['isi', 'footer', 'pharmaceutical', 'safety', 'legal'],
+                dimensions: ['Auto height', '14px font size'],
                 nvsContent: `
                     <h3>NVS Content Guidelines</h3>
                     <h4>Purpose</h4>
-                    <p>Provide quick access to utility functions and account-related actions without cluttering primary navigation.</p>
-                    
+                    <p>Present Important Safety Information in a compliant, accessible format.</p>
                     <h4>Content Requirements</h4>
                     <ul>
-                        <li>Keep labels concise (1-2 words maximum)</li>
-                        <li>Use familiar icons with text labels when possible</li>
-                        <li>Prioritize most-used functions</li>
-                        <li>Group related utilities together</li>
+                        <li>Follow FDA guidelines for ISI presentation</li>
+                        <li>Ensure all required information is included</li>
+                        <li>Use clear, readable typography</li>
+                        <li>Include proper disclaimers</li>
+                    </ul>
+                `,
+                technicalSpecs: `
+                    <h3>Technical Specifications</h3>
+                    <table class="spec-table">
+                        <tr><th>Element</th><th>Specification</th></tr>
+                        <tr><td>Font Size</td><td class="highlight">14px minimum</td></tr>
+                        <tr><td>Line Height</td><td>1.5</td></tr>
+                        <tr><td>Background</td><td>#f8f9fa</td></tr>
+                        <tr><td>Text Color</td><td>#333333</td></tr>
+                        <tr><td>Padding</td><td>24px</td></tr>
+                    </table>
+                `
+            },
+            {
+                id: 'hero-banner',
+                name: 'Hero Banner',
+                category: 'layout',
+                description: 'Large promotional banner section with headline, subtext, and call-to-action',
+                tags: ['hero', 'banner', 'promotional', 'headline', 'cta'],
+                dimensions: ['600px min height', '1920px width'],
+                nvsContent: `
+                    <h3>NVS Content Guidelines</h3>
+                    <h4>Purpose</h4>
+                    <p>Capture attention and communicate primary value proposition immediately.</p>
+                    <h4>Content Requirements</h4>
+                    <ul>
+                        <li>Write compelling, benefit-focused headlines</li>
+                        <li>Keep headlines under 10 words</li>
+                        <li>Include supporting subtext (20-30 words)</li>
+                        <li>Use single, clear call-to-action</li>
                     </ul>
                 `,
                 technicalSpecs: `
                     <h3>Technical Specifications</h3>
                     <table class="spec-table">
                         <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Height</td><td class="highlight">40px</td><td class="highlight">36px</td></tr>
-                        <tr><td>Font Size</td><td class="highlight">14px</td><td class="highlight">12px</td></tr>
-                        <tr><td>Padding</td><td>12px 16px</td><td>10px 12px</td></tr>
-                        <tr><td>Background</td><td>#f8f9fa</td><td>#f8f9fa</td></tr>
+                        <tr><td>Min Height</td><td class="highlight">600px</td><td class="highlight">400px</td></tr>
+                        <tr><td>Max Width</td><td class="highlight">1920px</td><td class="highlight">768px</td></tr>
+                        <tr><td>Headline Size</td><td>48px</td><td>32px</td></tr>
+                        <tr><td>Subtext Size</td><td>20px</td><td>16px</td></tr>
+                        <tr><td>Padding</td><td>80px 40px</td><td>60px 20px</td></tr>
                     </table>
                 `
-            },
-            {
-                id: 'jump-links',
-                name: 'Jump Links',
-                category: 'navigation',
-                description: 'Accessibility-focused navigation for quick page section access',
-                tags: ['accessibility', 'a11y', 'jump', 'navigation', 'skip'],
-                dimensions: ['Auto height', '16px font size'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Provide accessibility-compliant navigation shortcuts for users with screen readers and keyboard navigation.</p>
+            }
+        ];
+
+        let currentView = 'nvs';
+        let currentComponent = null;
+        let allComponents = components;
+
+        function initializeComponents() {
+            displayComponents(allComponents);
+            setupSearch();
+        }
+
+        function displayComponents(componentsToShow) {
+            const grid = document.getElementById('componentsGrid');
+            grid.innerHTML = '';
+
+            componentsToShow.forEach(component => {
+                const card = document.createElement('div');
+                card.className = 'component-card';
+                card.onclick = () => showComponentDetail(component);
+                
+                card.innerHTML = `
+                    <h3>${component.name}</h3>
+                    <p>${component.description}</p>
+                    <div class="component-tags">
+                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+
+            updateResultsInfo(componentsToShow.length);
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+
+            function filterComponents() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const category = categoryFilter.value;
+
+                const filtered = allComponents.filter(component => {
+                    const matchesSearch = component.name.toLowerCase().includes(searchTerm) ||
+                                        component.description.toLowerCase().includes(searchTerm) ||
+                                        component.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                                        component.dimensions.some(dim => dim.toLowerCase().includes(searchTerm));
                     
-                    <h4>Content Requirements</h4>
-                    <ul>
-                        <li>Use descriptive, action-oriented language</li>
-                        <li>Start with action verbs ("Skip to", "Jump to")</li>
-                        <li>Be specific about destinations</li>
-                        <li>Follow established accessibility patterns</li>
-                    </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Property</th><th>Value</th></tr>
-                        <tr><td>Font Size</td><td class="highlight">16px</td></tr>
-                        <tr><td>Position</td><td>Fixed, top-left</td></tr>
-                        <tr><td>Z-index</td><td>9999</td></tr>
-                        <tr><td>Focus Behavior</td><td>Visible on focus only</td></tr>
-                        <tr><td>Background</td><td>#1a237e</td></tr>
-                        <tr><td>Text Color</td><td>#ffffff</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'tabs',
-                name: 'Tab Navigation',
-                category: 'interactive',
-                description: 'Tabbed interface for organizing related content sections',
-                tags: ['tabs', 'navigation', 'content', 'interactive', 'sections'],
-                dimensions: ['48px height', '16px font size'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Organize related content into logical, scannable sections that reduce cognitive load.</p>
+                    const matchesCategory = !category || component.category === category;
                     
-                    <h4>Content Requirements</h4>
-                    <ul>
-                        <li>Use parallel structure for all tab labels</li>
-                        <li>Keep labels concise (1-3 words)</li>
-                        <li>Use nouns or noun phrases for content categories</li>
-                        <li>Ensure tabs are logically ordered</li>
-                        <li>Limit to 3-7 tabs for optimal usability</li>
-                    </ul>
-                `,
-                technicalSpecs: `
-                    <h3>Technical Specifications</h3>
-                    <table class="spec-table">
-                        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
-                        <tr><td>Tab Height</td><td class="highlight">48px</td><td class="highlight">44px</td></tr>
-                        <tr><td>Font Size</td><td class="highlight">16px</td><td class="highlight">14px</td></tr>
-                        <tr><td>Padding</td><td>12px 24px</td><td>10px 16px</td></tr>
-                        <tr><td>Border</td><td>1px solid #e0e0e0</td><td>1px solid #e0e0e0</td></tr>
-                        <tr><td>Active Border</td><td>3px solid #1a237e</td><td>3px solid #1a237e</td></tr>
-                    </table>
-                `
-            },
-            {
-                id: 'sticky-cta',
-                name: 'Sticky CTA',
-                category: 'interactive',
-                description: 'Persistent call-to-action element that remains visible during scroll',
-                tags: ['sticky', 'cta', 'persistent', 'scroll', 'conversion'],
-                dimensions: ['56px height', '100% width'],
-                nvsContent: `
-                    <h3>NVS Content Guidelines</h3>
-                    <h4>Purpose</h4>
-                    <p>Maintain conversion opportunities by keeping primary actions visible throughout the user journey.</p>
-                    
-                    <h4>Content Requirements</h4>
-                    <ul>
-                        <li>Use the most important conversion action only</li>
-                        <li>Keep text extremely concise (1-2 words)</li>
-                        <li>Use high-contrast, urgent language</li>
-                        <li>Ensure action is relevant to current page context</li>
-                        <li>Test visibility and conversion impact</li>
-                    </ul>
-                `,
-                technicalSpecs
+                    return matchesSearch && matchesCategory;
+                });
+
+                displayComponents(filtered);
+            }
+
+            searchInput.addEventListener('input', filterComponents);
+            categoryFilter.addEventListener('change', filterComponents);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = '';
+            displayComponents(allComponents);
+        }
+
+        function updateResultsInfo(count) {
+            const info = document.getElementById('results-info');
+            info.textContent = `Showing ${count} of ${allComponents.length} components`;
+        }
+
+        function showComponentDetail(component) {
+            currentComponent = component;
+            document.getElementById('homepage').style.display = 'none';
+            document.getElementById('component-detail').style.display = 'block';
+            document.getElementById('detail-title').textContent = component.name;
+            
+            currentView = 'nvs';
+            document.getElementById('nvs-toggle').classList.add('active');
+            document.getElementById('tech-toggle').classList.remove('active');
+            
+            showNVSContent();
+        }
+
+        function showHomepage() {
+            document.getElementById('component-detail').style.display = 'none';
+            document.getElementById('homepage').style.display = 'block';
+        }
+
+        function showNVSContent() {
+            if (!currentComponent) return;
+            
+            currentView = 'nvs';
+            document.getElementById('nvs-toggle').classList.add('active');
+            document.getElementById('tech-toggle').classList.remove('active');
+            document.getElementById('detail-content').innerHTML = currentComponent.nvsContent;
+        }
+
+        function showTechnicalSpecs() {
+            if (!currentComponent) return;
+            
+            currentView = 'tech';
+            document.getElementById('tech-toggle').classList.add('active');
+            document.getElementById('nvs-toggle').classList.remove('active');
+            document.getElementById('detail-content').innerHTML = currentComponent.technicalSpecs;
+        }
+    </script>
+</body>
+</html>
