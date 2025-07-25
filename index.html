@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drupal Web Operations Component Specifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-box button:hover {
+            background: #5a6fd8;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .main-content {
+            display: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .search-container {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .search-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .component-card.hidden {
+            display: none;
+        }
+
+        .component-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .component-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .component-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        .component-detail {
+            display: none;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .component-title {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 25px;
+            padding: 0.25rem;
+        }
+
+        .toggle-button {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .content-section h3 {
+            color: #555;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .content-section p, .content-section li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .content-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .spec-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .back-button:hover {
+            background: #5a6fd8;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .component-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .search-filters {
+                justify-content: center;
+            }
+
+            .view-toggle {
+                align-self: stretch;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h1>Drupal Web Operations Component Specifications</h1>
+            <div class="error-message" id="errorMessage">
+                Incorrect password. Please try again.
+            </div>
+            <input type="password" id="passwordInput" placeholder="Enter password" />
+            <button onclick="login()" id="loginButton">Access Site</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">Drupal Web Operations Component Specifications</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#" onclick="showHome()">Home</a></li>
+                        <li><a href="#" onclick="showChangelog()">Change Log</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <div id="homePage">
+            <!-- Search Container -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search components, requirements, or dimensions (e.g., 240x180, ISI, Hero)..." />
+                    <div class="search-filters">
+                        <button class="filter-button active" onclick="filterComponents('all')">All</button>
+                        <button class="filter-button" onclick="filterComponents('page-frame')">Page Frame</button>
+                        <button class="filter-button" onclick="filterComponents('content')">Content</button>
+                        <button class="filter-button" onclick="filterComponents('interactive')">Interactive</button>
+                        <button class="filter-button" onclick="filterComponents('hcp')">HCP</button>
+                        <button class="filter-button" onclick="filterComponents('dtc')">DTC</button>
+                        <button class="filter-button" onclick="filterComponents('images')">Images</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Container -->
+            <div class="container">
+                <h1>Component Specifications</h1>
+                <p>Select a component below to view its NVS Content Requirements and Technical Specifications.</p>
+                
+                <!-- Component Grid -->
+                <div class="component-grid" id="componentGrid">
+                    <!-- Universal Templates -->
+                    <div class="component-card" onclick="showComponent('universal-templates')" data-category="templates" data-tags="universal templates hcp dtc unbranded">
+                        <h3>Universal Templates</h3>
+                        <p>HCP Branded, DTC Branded, and Unbranded website templates with global elements.</p>
+                        <div class="component-tags">
+                            <span class="tag">Templates</span>
+                            <span class="tag">HCP</span>
+                            <span class="tag">DTC</span>
+                        </div>
+                    </div>
+
+                    <!-- Page Frame Components -->
+                    <div class="component-card" onclick="showComponent('utility-navigation')" data-category="page-frame" data-tags="utility navigation header toggle hcp dtc">
+                        <h3>Utility Navigation</h3>
+                        <p>Header component with audience toggle, introductory text, and required links.</p>
+                        <div class="component-tags">
+                            <span class="tag">Page Frame</span>
+                            <span class="tag">Required</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('primary-navigation')" data-category="page-frame" data-tags="primary navigation left rail menu 250px 500px icons">
+                        <h3>Primary Navigation</h3>
+                        <p>Vertical left-aligned navigation with two levels and icon-driven mobile approach.</p>
+                        <div class="component-tags">
+                            <span class="tag">Page Frame</span>
+                            <span class="tag">Required</span>
+                            <span class="tag">Images</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('isi-component')" data-category="page-frame" data-tags="isi important safety information footer drawer">
+                        <h3>ISI Component</h3>
+                        <p>Important Safety Information displayed as drawer and full module for branded sites.</p>
+                        <div class="component-tags">
+                            <span class="tag">Page Frame</span>
+                            <span class="tag">Branded</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('footer')" data-category="page-frame" data-tags="footer links novartis logo social media">
+                        <h3>Footer</h3>
+                        <p>Site-wide footer with links, Novartis logo, and required compliance information.</p>
+                        <div class="component-tags">
+                            <span class="tag">Page Frame</span>
+                            <span class="tag">Required</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('notification-module')" data-category="page-frame" data-tags="notification alerts announcements">
+                        <h3>Notification Module</h3>
+                        <p>Optional alert component for announcements and compliance notices.</p>
+                        <div class="component-tags">
+                            <span class="tag">Page Frame</span>
+                            <span class="tag">Optional</span>
+                        </div>
+                    </div>
+
+                    <!-- Content Components -->
+                    <div class="component-card" onclick="showComponent('hero')" data-category="content" data-tags="hero images video 1200px 2560px background">
+                        <h3>Hero - Full Width</h3>
+                        <p>Full-width hero with customizable backgrounds, CTA buttons, and responsive images.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Images</span>
+                            <span class="tag">Video</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('banner-icons')" data-category="content" data-tags="banner icons 180x180 data">
+                        <h3>Banner Icons</h3>
+                        <p>Visual banner component with icons or data points for highlighting information.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Images</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('cta-buttons')" data-category="interactive" data-tags="cta button primary secondary tertiary">
+                        <h3>CTA Buttons</h3>
+                        <p>Call-to-action buttons with multiple styles, sizes, and icon options.</p>
+                        <div class="component-tags">
+                            <span class="tag">Interactive</span>
+                            <span class="tag">Images</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('tables')" data-category="content" data-tags="tables data rows columns">
+                        <h3>Table Builder</h3>
+                        <p>Flexible table component with customizable cells, headers, and responsive design.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Data</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('jump-links')" data-category="interactive" data-tags="jump links anchor navigation">
+                        <h3>Jump Links</h3>
+                        <p>Scannable navigation elements for anchoring to content lower on the page.</p>
+                        <div class="component-tags">
+                            <span class="tag">Interactive</span>
+                            <span class="tag">Navigation</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('tabbed-content')" data-category="interactive" data-tags="tabs content organization">
+                        <h3>Tabbed Content</h3>
+                        <p>Tab component for organizing large amounts of related information.</p>
+                        <div class="component-tags">
+                            <span class="tag">Interactive</span>
+                            <span class="tag">Content</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('sticky-cta')" data-category="interactive" data-tags="sticky cta alert homepage">
+                        <h3>Sticky CTA</h3>
+                        <p>Optional collapsible alert CTA box aligned to the right side of homepage.</p>
+                        <div class="component-tags">
+                            <span class="tag">Interactive</span>
+                            <span class="tag">Optional</span>
+                        </div>
+                    </div>
+
+                    <!-- Modal Components -->
+                    <div class="component-card" onclick="showComponent('external-link-modal')" data-category="content" data-tags="external link modal warning">
+                        <h3>External Link Modal</h3>
+                        <p>Modal that alerts users when navigating away from Novartis website.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Required</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('unbranded-modal')" data-category="content" data-tags="unbranded branded modal redirect">
+                        <h3>Unbranded to Branded Modal</h3>
+                        <p>Modal for navigating from unbranded to branded Novartis websites.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Unbranded</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('cookie-banner')" data-category="content" data-tags="cookie banner onetrust iba consent">
+                        <h3>Cookie Banner</h3>
+                        <p>Notice and consent management for targeted advertising and cookie usage.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">DTC</span>
+                        </div>
+                    </div>
+
+                    <!-- Specialized Components -->
+                    <div class="component-card" onclick="showComponent('error-pages')" data-category="content" data-tags="error 404 403 500 pages">
+                        <h3>Error Pages</h3>
+                        <p>Standard error pages for 404, 403, and 500 errors with required messaging.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Required</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('gateway-page')" data-category="content" data-tags="gateway page multi-indication cards">
+                        <h3>Gateway Page</h3>
+                        <p>Multi-indication brand site entry point with indication cards and minimal content.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Multi-indication</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('coming-soon')" data-category="content" data-tags="coming soon placeholder video">
+                        <h3>Coming Soon Page & Video</h3>
+                        <p>Placeholder page and video for content not yet available at launch.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Video</span>
+                        </div>
+                    </div>
+
+                    <!-- Image & Video Components -->
+                    <div class="component-card" onclick="showComponent('images-icons')" data-category="images" data-tags="images icons dimensions aspect ratio webp 240x180 853x480">
+                        <h3>Images & Icons</h3>
+                        <p>Image requirements, formats, sizing, and icon specifications across components.</p>
+                        <div class="component-tags">
+                            <span class="tag">Images</span>
+                            <span class="tag">Technical</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('video')" data-category="images" data-tags="video kaltura captions 240x180 853x480">
+                        <h3>Video</h3>
+                        <p>Video requirements, player features, and thumbnail specifications.</p>
+                        <div class="component-tags">
+                            <span class="tag">Video</span>
+                            <span class="tag">Images</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('alt-text')" data-category="images" data-tags="alt text accessibility image descriptions">
+                        <h3>Image Alternative Text</h3>
+                        <p>Alt text requirements and best practices for accessibility compliance.</p>
+                        <div class="component-tags">
+                            <span class="tag">Images</span>
+                            <span class="tag">Accessibility</span>
+                        </div>
+                    </div>
+
+                    <!-- Additional Components -->
+                    <div class="component-card" onclick="showComponent('footnotes')" data-category="content" data-tags="footnotes references trademarks">
+                        <h3>Footnotes & References</h3>
+                        <p>Footnote placement, trademark disclaimers, and reference formatting.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Compliance</span>
+                        </div>
+                    </div>
+
+                    <div class="component-card" onclick="showComponent('fuse-mlr')" data-category="content" data-tags="fuse mlr id approval signoff">
+                        <h3>FUSE MLR ID</h3>
+                        <p>Medical Legal Review approval identifiers for component signoff.</p>
+                        <div class="component-tags">
+                            <span class="tag">Content</span>
+                            <span class="tag">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Component Detail Pages -->
+        <div class="component-detail" id="componentDetail">
+            <div class="breadcrumb">
+                <div class="breadcrumb-content">
+                    <a href="#" onclick="showHome()">Home</a> > <span id="componentBreadcrumb"></span>
+                </div>
+            </div>
+
+            <div class="container">
+                <a href="#" onclick="showHome()" class="back-button">← Back to Components</a>
+                
+                <div class="component-header">
+                    <h1 class="component-title" id="componentTitle"></h1>
+                    <div class="view-toggle">
+                        <button class="toggle-button active" onclick="switchView('nvs')" id="nvsToggle">NVS Requirements</button>
+                        <button class="toggle-button" onclick="switchView('technical')" id="technicalToggle">Technical Specs</button>
+                    </div>
+                </div>
+
+                <div class="content-section" id="nvsContent">
+                    <!-- NVS Content will be populated here -->
+                </div>
+
+                <div class="content-section hidden" id="technicalContent">
+                    <!-- Technical Content will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Log Page -->
+        <div class="component-detail" id="changelogPage" style="display: none;">
+            <div class="breadcrumb">
+                <div class="breadcrumb-content">
+                    <a href="#" onclick="showHome()">Home</a> > Change Log
+                </div>
+            </div>
+
+            <div class="container">
+                <a href="#" onclick="showHome()" class="back-button">← Back to Components</a>
+                
+                <h1>Change Log</h1>
+                
+                <div class="content-section">
+                    <h2>Version 3.3 - May 2025</h2>
+                    <ul>
+                        <li>Added new Alt Text section detailing usage and requirements</li>
+                        <li>Updated image sizing guidance for various components</li>
+                        <li>Enhanced video specifications and requirements</li>
+                    </ul>
+
+                    <h2>Version 3.2 - September 2024</h2>
+                    <ul>
+                        <li>Reorganized Cookie Banner section based on OneTrust vs IBA Cookie Banner</li>
+                        <li>Added new OneTrust Cookie Banner implementation details</li>
+                        <li>Updated footer requirements to include Consumer Health Privacy Policy</li>
+                        <li>Added Coming Soon pages and video specifications</li>
+                        <li>Enhanced Gateway Page requirements</li>
+                        <li>Added Contact a Representative link guidance</li>
+                    </ul>
+
+                    <h2>Version 3.1 - December 2023</h2>
+                    <ul>
+                        <li>Updated Interest-Based Ads terminology</li>
+                        <li>Enhanced ISI CTA specifications</li>
+                        <li>Updated Unbranded Modal content specifications</li>
+                        <li>Clarified error page messaging requirements</li>
+                    </ul>
+
+                    <h2>Version 3.0 - November 2023</h2>
+                    <ul>
+                        <li>Complete overhaul of document structure and design</li>
+                        <li>Enhanced Introduction section</li>
+                        <li>Updated all visual examples</li>
+                        <li>Reorganized content for better usability</li>
+                        <li>Added new social media icon requirements</li>
+                        <li>Enhanced footnotes and references specifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Component data
+        const componentData = {
+            'universal-templates': {
+                title: 'Universal Templates',
+                nvs: `
+                    <h2>Universal Templates Overview</h2>
+                    <p>Universal Templates are based on the US Web CMS Product and Design System which enable flexibility, create consistency, and provide a foundation for greater modularity of website creation.</p>
+                    
+                    <h3>Available Templates</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Template</th>
+                            <th>Use Case</th>
+                            <th>Available Page Types</th>
+                        </tr>
+                        <tr>
+                            <td>HCP Branded</td>
+                            <td>Sites branded with HCP audiences</td>
+                            <td>Gateway, Home, Content, Single-Page</td>
+                        </tr>
+                        <tr>
+                            <td>DTC Branded</td>
+                            <td>Sites branded with Patients as primary audience</td>
+                            <td>Gateway, Home, Content, Single-Page</td>
+                        </tr>
+                        <tr>
+                            <td>Unbranded</td>
+                            <td>Unbranded sites (Disease Awareness, etc.)</td>
+                            <td>Home, Content, Single-Page</td>
+                        </tr>
+                    </table>
+
+                    <h3>Page Type Guidelines</h3>
+                    <ul>
+                        <li><strong>Gateway:</strong> Must be used for products with multiple indications when the website is architected so that each indication has its own section</li>
+                        <li><strong>Home:</strong> Main landing page for the product or disease awareness site</li>
+                        <li><strong>Content Page:</strong> Used for all content pages below the home or sectional landing pages</li>
+                        <li><strong
+
