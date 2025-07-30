@@ -270,7 +270,7 @@
             const noResults = document.getElementById('noResults');
             if (filteredComponents.length === 0) { grid.innerHTML = ''; noResults.style.display = 'block'; return; }
             noResults.style.display = 'none';
-            grid.innerHTML = filteredComponents.map(component => `<div class="component-card" onclick="showComponent('${component.id}')"><h3>${component.name}</h3><p>${component.description}</p><div class="component-tags">${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div></div>`).join('');
+            grid.innerHTML = filteredComponents.map(component => `<div class="component-card" onclick="showComponent('${component.id}')"><h3>${component.name}</h3><p>${component.description}</p><div class="component-tags">${component.tags.map(tag => '<span class="tag">' + tag + '</span>').join('')}</div></div>`).join('');
         }
 
         function setupSearch() {
